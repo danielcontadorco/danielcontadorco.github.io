@@ -11,6 +11,12 @@
 <meta property="og:description" content="Presupuesto por quincena, plan para salir de deudas, declaración de renta y cuentas claras para negocios pequeños. 100 % virtual. Plantilla gratis.">
 <meta property="og:image" content="logo.png">
 <meta name="theme-color" content="#104B35">
+<script>
+  // Un enlace compartido a #servicios debe abrir por el inicio, sin afectar los enlaces internos.
+  if (location.hash === "#servicios" && (!document.referrer || new URL(document.referrer).origin !== location.origin)) {
+    history.replaceState(null, "", location.pathname + location.search);
+  }
+</script>
 <style>
   :root { --verde:#104B35; --hondo:#0A3324; --claro:#1C6B4D; --tinta:#1B2620; --gris:#586860; --fondo:#F4F7F5; --tarjeta:#fff; --linea:#DCE5E0; --acento:#F2C14E; --suave:#E7F0EB; --crema:#F3EEDC; }
   * { box-sizing:border-box; }
@@ -64,9 +70,12 @@
   h2 { font-size:clamp(1.5rem,4vw,2rem); line-height:1.15; margin:0 0 8px; letter-spacing:-.02em; color:var(--verde); text-wrap:balance; }
   .sub { color:var(--gris); margin:0 0 22px; max-width:62ch; }
 
-  /* Situaciones */
-  .sit { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px; }
-  .sit button { border:1.5px solid var(--linea); background:#fff; padding:10px 16px; border-radius:99px; font-weight:700; font-size:.95rem; color:var(--tinta); cursor:pointer; font-family:inherit; }
+  /* Público y situaciones */
+  .publico { display:flex; gap:8px; margin-bottom:12px; }
+  .publico button { border:1.5px solid var(--linea); background:#fff; padding:9px 16px; border-radius:12px; font-weight:700; font-size:.95rem; color:var(--tinta); cursor:pointer; font-family:inherit; }
+  .publico button[aria-pressed="true"] { background:var(--verde); border-color:var(--verde); color:#fff; }
+  .sit { display:flex; flex-wrap:nowrap; gap:8px; overflow-x:auto; overscroll-behavior-x:contain; -webkit-overflow-scrolling:touch; scroll-snap-type:x proximity; padding:2px 0 12px; margin-bottom:10px; }
+  .sit button { flex:0 0 auto; white-space:nowrap; scroll-snap-align:start; border:1.5px solid var(--linea); background:#fff; padding:10px 16px; border-radius:99px; font-weight:700; font-size:.95rem; color:var(--tinta); cursor:pointer; font-family:inherit; }
   .sit button[aria-pressed="true"] { background:var(--verde); border-color:var(--verde); color:#fff; }
   .consejo { background:var(--suave); border-left:4px solid var(--acento); border-radius:0 12px 12px 0; padding:12px 16px; margin:0 0 20px; font-size:.97rem; }
   .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; }
@@ -155,8 +164,8 @@
       <input type="range" id="diario" min="2000" max="50000" step="1000" value="12000">
       <label>¿Cuántos días a la semana?</label>
       <div class="dias" id="dias"><button type="button" aria-pressed="false">3</button><button type="button" aria-pressed="false">4</button><button type="button" aria-pressed="true">5</button><button type="button" aria-pressed="false">6</button><button type="button" aria-pressed="false">7</button></div>
-      <div class="res"><div><small>En un mes</small><b id="rMes">$260.000</b></div><div><small>En un año</small><b id="rAnio">$3.120.000</b></div></div>
-      <p class="nota">Es una cuenta sencilla: gasto × días × 52 semanas. Para saber a dónde se va el resto de tu plata, mira <a href="#servicios" data-elige="q">Quincena en orden</a>.</p>
+      <div class="res"><div><small>En un mes (4 semanas)</small><b id="rMes">$240.000</b></div><div><small>En un año (52 semanas)</small><b id="rAnio">$3.120.000</b></div></div>
+      <p class="nota">Estimación: gasto × días por semana × 4 semanas para el mes, o × 52 semanas para el año. Para saber a dónde se va el resto de tu plata, mira <a href="#servicios" data-elige="q">Quincena en orden</a>.</p>
     </div>
   </div>
 </div></div>
@@ -165,38 +174,42 @@
   <section id="servicios">
     <h2>Arma tu plan</h2>
     <p class="sub">Cuéntame qué te está pasando y te muestro lo que te sirve. Puedes elegir uno o varios servicios; al final los envías todos juntos en un solo mensaje.</p>
+    <div class="publico" id="publico" role="group" aria-label="Servicios para quién">
+      <button type="button" data-publico="persona" aria-pressed="true">Para ti</button>
+      <button type="button" data-publico="negocio" aria-pressed="false">Para tu negocio</button>
+    </div>
     <div class="sit" id="sit" role="group" aria-label="¿Qué te está pasando?">
-      <button type="button" aria-pressed="true" data-sit="todo">Ver todo</button>
       <button type="button" aria-pressed="false" data-sit="plata">La plata no me alcanza</button>
       <button type="button" aria-pressed="false" data-sit="deudas">Tengo varias deudas</button>
       <button type="button" aria-pressed="false" data-sit="renta">Me toca declarar renta</button>
-      <button type="button" aria-pressed="false" data-sit="negocio">Tengo un negocio</button>
+      <button type="button" aria-pressed="false" data-sit="negocio" hidden>Tengo un negocio</button>
+      <button type="button" aria-pressed="true" data-sit="todo">Ver todo</button>
     </div>
     <p class="consejo" id="consejo" hidden></p>
 
     <div class="grid" id="grid">
-      <div class="card" data-id="q" data-nombre="Quincena en orden" data-sit="plata deudas"><span class="grupo oro">El más pedido</span><h3>Quincena en orden</h3><p class="para">Para quien gana, pero no sabe a dónde se le va.</p><p class="precio">$80.000 <small>pago único</small></p>
+      <div class="card" data-publico="persona" data-id="q" data-nombre="Quincena en orden" data-sit="plata deudas"><span class="grupo oro">El más pedido</span><h3>Quincena en orden</h3><p class="para">Para quien gana, pero no sabe a dónde se le va.</p><p class="precio">$80.000 <small>pago único</small></p>
         <ul><li>Reviso tus extractos de los últimos dos meses</li><li>Te muestro, con cifras, en qué se te va la plata</li><li>Presupuesto por quincena hecho con tus números</li><li>Plan escrito para los próximos 30 días, con hasta 2 ajustes si algo no te cuadra</li><li>Videollamada de 30 minutos para explicártelo</li></ul>
         <button class="btn elegir" type="button">Agregar a mi plan</button></div>
-      <div class="card" data-id="d" data-nombre="Plan Salir de deudas" data-sit="deudas"><span class="grupo">Para ti</span><h3>Plan Salir de deudas</h3><p class="para">Para quien tiene varias deudas y no ve el final.</p><p class="precio">$150.000 <small>pago único</small></p>
+      <div class="card" data-publico="persona" data-id="d" data-nombre="Plan Salir de deudas" data-sit="deudas"><span class="grupo">Para ti</span><h3>Plan Salir de deudas</h3><p class="para">Para quien tiene varias deudas y no ve el final.</p><p class="precio">$150.000 <small>pago único</small></p>
         <ul><li>Lista completa de lo que debes: saldo, cuota e interés de cada deuda</li><li>En qué orden pagarlas para que pagues menos intereses</li><li>Calendario mes a mes con la fecha estimada en que terminas</li><li>Guía para pedirle al banco mejores condiciones</li><li>Videollamada de 30 minutos para revisar todo el plan</li></ul>
         <button class="btn elegir" type="button">Agregar a mi plan</button></div>
-      <div class="card" data-id="r" data-nombre="Declaración de renta" data-sit="renta"><span class="grupo">Para ti</span><h3>Declaración de renta</h3><p class="para">Para empleados, pensionados e independientes.</p><p class="precio"><small>Desde</small> $150.000</p>
+      <div class="card" data-publico="persona" data-id="r" data-nombre="Declaración de renta" data-sit="renta"><span class="grupo">Para ti</span><h3>Declaración de renta</h3><p class="para">Para empleados, pensionados e independientes.</p><p class="precio"><small>Desde</small> $150.000</p>
         <ul><li>Primero reviso si de verdad te toca declarar</li><li>Preparo tu declaración con tus certificados y extractos</li><li>Te explico cada cifra antes de que la firmes</li><li>Te acompaño por videollamada mientras la presentas</li><li>También te ayudo si ya se te pasó la fecha</li></ul>
         <button class="btn elegir" type="button">Agregar a mi plan</button></div>
-      <div class="card" data-id="a" data-nombre="Acompañamiento mensual" data-sit="plata deudas"><span class="grupo">Para ti</span><h3>Acompañamiento mensual</h3><p class="para">Para no volver a desordenarte.</p><p class="precio">$90.000 <small>al mes · sin permanencia</small></p>
+      <div class="card" data-publico="persona" data-id="a" data-nombre="Acompañamiento mensual" data-sit="plata deudas"><span class="grupo">Para ti</span><h3>Acompañamiento mensual</h3><p class="para">Para no volver a desordenarte.</p><p class="precio">$90.000 <small>al mes · sin permanencia</small></p>
         <ul><li>Cada mes comparo lo que gastaste con el presupuesto que armamos</li><li>Te digo qué cambiar el mes siguiente, en concreto</li><li>Llevo la cuenta de cuánto bajan tus deudas y cuánto sube tu ahorro</li><li>Me escribes por WhatsApp cuando tengas dudas</li></ul>
         <button class="btn elegir" type="button">Agregar a mi plan</button></div>
-      <div class="card" data-id="b" data-nombre="Cuentas claras cada mes (negocio)" data-sit="negocio"><span class="grupo">Para tu negocio</span><h3>Cuentas claras cada mes</h3><p class="para">Para comerciantes e independientes con negocio pequeño.</p><p class="precio"><small>Desde</small> $280.000 <small>al mes · sin permanencia</small></p>
+      <div class="card" data-publico="negocio" data-id="b" data-nombre="Cuentas claras cada mes (negocio)" data-sit="negocio"><span class="grupo">Para tu negocio</span><h3>Cuentas claras cada mes</h3><p class="para">Para comerciantes e independientes con negocio pequeño.</p><p class="precio"><small>Desde</small> $280.000 <small>al mes · sin permanencia</small></p>
         <ul><li>Cada mes anoto lo que vendiste y lo que gastaste, con tus facturas y extractos</li><li>Informe mensual: cuánto vendiste, cuánto gastaste y cuánto te quedó</li><li>Te aviso antes de cada fecha de pago o declaración</li><li>Vigilo que tus ventas no pasen el límite que te obliga a cobrar IVA</li><li>Me escribes por WhatsApp cuando tengas dudas</li></ul>
         <button class="btn elegir" type="button">Agregar a mi plan</button></div>
-      <div class="card" data-id="n" data-nombre="Negocio con IVA o Régimen Simple" data-sit="negocio"><span class="grupo">Para tu negocio</span><h3>Negocio con IVA o Régimen Simple</h3><p class="para">Para negocios que ya crecieron.</p><p class="precio"><small>Desde</small> $480.000 <small>al mes · sin permanencia</small></p>
+      <div class="card" data-publico="negocio" data-id="n" data-nombre="Negocio con IVA o Régimen Simple" data-sit="negocio"><span class="grupo">Para tu negocio</span><h3>Negocio con IVA o Régimen Simple</h3><p class="para">Para negocios que ya crecieron.</p><p class="precio"><small>Desde</small> $480.000 <small>al mes · sin permanencia</small></p>
         <ul><li>Todo lo de Cuentas claras cada mes</li><li>Calculo cuánto IVA te toca pagar, o tu anticipo del Régimen Simple</li><li>Comparo tus cuentas con el extracto del banco para que nada falte ni sobre</li><li>Reviso que tus facturas electrónicas estén bien hechas</li><li>Nómina de hasta 5 empleados, si la necesitas</li></ul>
         <button class="btn elegir" type="button">Agregar a mi plan</button></div>
-      <div class="card" data-id="f" data-nombre="Facturación electrónica" data-sit="negocio"><span class="grupo">Para tu negocio</span><h3>Facturación electrónica</h3><p class="para">Para dejar el talonario.</p><p class="precio">$180.000 <small>pago único</small></p>
+      <div class="card" data-publico="negocio" data-id="f" data-nombre="Facturación electrónica" data-sit="negocio"><span class="grupo">Para tu negocio</span><h3>Facturación electrónica</h3><p class="para">Para dejar el talonario.</p><p class="precio">$180.000 <small>pago único</small></p>
         <ul><li>Te acompaño a activar la facturación electrónica ante la DIAN</li><li>Capacitación de una hora haciendo facturas con tus propios productos</li><li>Guía paso a paso para facturar desde el celular</li></ul>
         <button class="btn elegir" type="button">Agregar a mi plan</button></div>
-      <div class="card" data-id="t" data-nombre="Trámites y decisiones" data-sit="negocio renta"><span class="grupo">Para ti o tu negocio</span><h3>Trámites y decisiones</h3><p class="para">Para resolver algo puntual.</p><p class="precio"><small>Desde</small> $50.000</p>
+      <div class="card" data-publico="persona negocio" data-id="t" data-nombre="Trámites y decisiones" data-sit="negocio renta"><span class="grupo">Para ti o tu negocio</span><h3>Trámites y decisiones</h3><p class="para">Para resolver algo puntual.</p><p class="precio"><small>Desde</small> $50.000</p>
         <ul><li>RUT: sacarlo por primera vez o actualizarlo</li><li>¿Te conviene el Régimen Simple? Te hago la cuenta con tus cifras</li><li>Poner al día las cuentas de meses atrasados</li><li>Separar la plata del negocio de la plata de la casa</li></ul>
         <button class="btn elegir" type="button">Agregar a mi plan</button></div>
     </div>
@@ -273,9 +286,10 @@
   var pesos = function (n) { return "$" + Math.round(n).toLocaleString("es-CO"); };
   var diario = document.getElementById("diario"), diasSel = 5;
   function calcula() {
+    var mes = Number(diario.value) * diasSel * 4;
     var anio = Number(diario.value) * diasSel * 52;
     document.getElementById("vDiario").textContent = pesos(diario.value);
-    document.getElementById("rMes").textContent = pesos(anio / 12);
+    document.getElementById("rMes").textContent = pesos(mes);
     document.getElementById("rAnio").textContent = pesos(anio);
   }
   diario.addEventListener("input", calcula);
@@ -296,14 +310,38 @@
     negocio: "Si no cobras IVA, empieza por Cuentas claras cada mes. Si ya cobras IVA o estás en el Régimen Simple, mira el segundo plan."
   };
   var cartas = [].slice.call(document.querySelectorAll(".card"));
-  document.querySelectorAll("#sit button").forEach(function (b) {
+  var publicoActual = "persona", situacionActual = "todo";
+  function aplicaFiltros() {
+    document.querySelectorAll("#publico button").forEach(function (b) {
+      b.setAttribute("aria-pressed", b.dataset.publico === publicoActual ? "true" : "false");
+    });
+    document.querySelectorAll("#sit button").forEach(function (b) {
+      b.hidden = publicoActual === "negocio" ? b.dataset.sit !== "todo" && b.dataset.sit !== "negocio" : b.dataset.sit === "negocio";
+      b.setAttribute("aria-pressed", b.dataset.sit === situacionActual ? "true" : "false");
+    });
+    cartas.forEach(function (c) {
+      var visiblePublico = c.dataset.publico.split(" ").indexOf(publicoActual) >= 0;
+      var visibleSituacion = situacionActual === "todo" || c.dataset.sit.split(" ").indexOf(situacionActual) >= 0;
+      c.hidden = !visiblePublico || !visibleSituacion;
+    });
+    var p = document.getElementById("consejo");
+    p.hidden = !CONSEJOS[situacionActual]; p.textContent = CONSEJOS[situacionActual] || "";
+  }
+  document.querySelectorAll("#publico button").forEach(function (b) {
     b.addEventListener("click", function () {
-      var s = b.dataset.sit;
-      document.querySelectorAll("#sit button").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
-      cartas.forEach(function (c) { c.hidden = s !== "todo" && c.dataset.sit.split(" ").indexOf(s) < 0 && !c.classList.contains("sel"); });
-      var p = document.getElementById("consejo"); p.hidden = !CONSEJOS[s]; p.textContent = CONSEJOS[s] || "";
+      publicoActual = b.dataset.publico;
+      situacionActual = "todo";
+      aplicaFiltros();
+      document.getElementById("sit").scrollLeft = 0;
     });
   });
+  document.querySelectorAll("#sit button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      situacionActual = b.dataset.sit;
+      aplicaFiltros();
+    });
+  });
+  aplicaFiltros();
 
   // Selección de varios servicios
   var bandeja = document.getElementById("bandeja");
@@ -323,7 +361,7 @@
   }
   cartas.forEach(function (c) { c.querySelector(".elegir").addEventListener("click", function () { c.classList.toggle("sel"); pinta(); }); });
   document.querySelectorAll("[data-elige]").forEach(function (a) {
-    a.addEventListener("click", function () { var c = document.querySelector('.card[data-id="' + a.dataset.elige + '"]'); if (c) { c.hidden = false; c.classList.add("sel"); pinta(); } });
+    a.addEventListener("click", function () { var c = document.querySelector('.card[data-id="' + a.dataset.elige + '"]'); if (c) { publicoActual = "persona"; situacionActual = "todo"; aplicaFiltros(); c.classList.add("sel"); pinta(); } });
   });
   pinta();
 
