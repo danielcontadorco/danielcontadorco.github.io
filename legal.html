@@ -4,119 +4,206 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Información legal | Daniel Contador</title>
-<meta name="description" content="Términos de uso, términos del servicio, política de tratamiento de datos personales y derechos de autor de Daniel Contador.">
+<meta name="description" content="Términos del servicio, política de datos personales, cookies, devoluciones, reclamos y derechos de autor de Daniel Contador.">
 <link rel="icon" type="image/png" href="logo.png">
 <meta name="theme-color" content="#104B35">
 <style>
   :root { --verde:#104B35; --tinta:#1B2620; --gris:#586860; --fondo:#F4F7F5; --linea:#DCE5E0; --acento:#F2C14E; --suave:#E7F0EB; }
-  * { box-sizing:border-box; } html { scroll-behavior:smooth; }
+  * { box-sizing:border-box; } html { scroll-behavior:smooth; scroll-padding-top:76px; }
   body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; color:var(--tinta); background:var(--fondo); line-height:1.6; }
-  .barra { background:var(--verde); color:#fff; } .barra div { max-width:820px; margin:0 auto; padding:16px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+  .barra { background:var(--verde); color:#fff; position:sticky; top:0; z-index:5; } .barra div { max-width:820px; margin:0 auto; padding:12px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
   .barra a { color:#fff; text-decoration:none; font-weight:800; display:flex; align-items:center; gap:10px; } .barra img { width:38px; height:38px; border-radius:50%; border:2px solid #fff; }
   .barra a.volver { font-weight:600; font-size:.92rem; opacity:.9; }
   main { max-width:820px; margin:0 auto; padding:28px 16px 60px; }
   h1 { color:var(--verde); font-size:clamp(1.7rem,5vw,2.3rem); letter-spacing:-.02em; margin:0 0 6px; }
-  .fecha { color:var(--gris); margin:0 0 20px; }
-  nav { background:#fff; border:1px solid var(--linea); border-radius:14px; padding:14px 18px; margin-bottom:22px; } nav a { display:block; padding:4px 0; color:var(--verde); font-weight:600; }
-  section { background:#fff; border:1px solid var(--linea); border-radius:16px; padding:22px 22px 12px; margin-bottom:18px; }
-  h2 { color:var(--verde); margin:0 0 10px; font-size:1.35rem; } h3 { margin:18px 0 4px; font-size:1.02rem; color:var(--verde); }
-  p { margin:0 0 10px; } ul { margin:0 0 10px; padding-left:1.3em; } li { margin-bottom:6px; } a { color:var(--verde); }
-  .caja { background:var(--suave); border-radius:12px; padding:12px 16px; margin:0 0 12px; }
-  .btn { display:inline-block; background:var(--acento); color:#0A3324; padding:13px 22px; border-radius:12px; font-weight:800; text-decoration:none; margin:4px 0 12px; }
+  .fecha { color:var(--gris); margin:0 0 14px; }
+  .todo { border:0; background:none; color:var(--verde); font:inherit; font-weight:700; text-decoration:underline; cursor:pointer; padding:0; margin:0 0 16px; }
+  details.tema { background:#fff; border:1px solid var(--linea); border-radius:16px; margin-bottom:12px; overflow:hidden; }
+  details.tema[open] { border-color:var(--verde); }
+  summary { list-style:none; cursor:pointer; padding:18px 52px 18px 20px; position:relative; }
+  summary::-webkit-details-marker { display:none; }
+  summary::after { content:"+"; position:absolute; right:18px; top:50%; transform:translateY(-50%); width:28px; height:28px; border-radius:50%; background:var(--suave); color:var(--verde); font-weight:800; font-size:1.2rem; line-height:28px; text-align:center; }
+  details[open] > summary::after { content:"–"; background:var(--verde); color:#fff; }
+  summary b { display:block; color:var(--verde); font-size:1.12rem; } summary small { display:block; color:var(--gris); font-size:.9rem; }
+  .cuerpo { padding:4px 20px 14px; border-top:1px solid var(--linea); }
+  h3 { margin:18px 0 4px; font-size:1.02rem; color:var(--verde); }
+  p { margin:10px 0; } ul { margin:0 0 10px; padding-left:1.3em; } li { margin-bottom:6px; } a { color:var(--verde); }
+  .caja { background:var(--suave); border-radius:12px; padding:12px 16px; margin:12px 0; }
+  .btn { display:inline-block; background:var(--acento); color:#0A3324; padding:13px 22px; border-radius:12px; font-weight:800; text-decoration:none; margin:4px 0; border:0; font:inherit; font-weight:800; cursor:pointer; }
+  .btn.linea { background:#fff; box-shadow:inset 0 0 0 2px var(--verde); color:var(--verde); }
+  form { background:var(--fondo); border-radius:12px; padding:16px; margin:12px 0; }
+  form label { display:block; font-weight:700; font-size:.95rem; margin:0 0 4px; }
+  input[type=text], select, textarea { width:100%; padding:11px 13px; border:1.5px solid var(--linea); border-radius:10px; font:inherit; margin:0 0 12px; background:#fff; }
+  .aviso { color:#A33; font-size:.9rem; font-weight:600; min-height:1.2em; margin:0 0 6px; }
+  pre { white-space:pre-wrap; background:#fff; border-radius:10px; padding:12px 14px; font:inherit; font-size:.92rem; margin:10px 0; }
+  [hidden] { display:none !important; }
   footer { max-width:820px; margin:0 auto; padding:0 16px 40px; color:var(--gris); font-size:.84rem; }
+  @media print { details.tema > .cuerpo { display:block; } .barra, .todo { display:none; } }
 </style>
 </head>
 <body>
 <div class="barra"><div><a href="index.html"><img src="logo.png" alt="">Daniel Contador</a><a class="volver" href="index.html">← Volver al inicio</a></div></div>
 <main>
   <h1>Información legal</h1>
-  <p class="fecha">Vigente desde el 13 de noviembre de 2026. Todo en un solo lugar y en palabras claras.</p>
-  <nav>
-    <a href="#quien">1. Quién responde por este sitio</a>
-    <a href="#uso">2. Términos de uso del sitio</a>
-    <a href="#terminos">3. Términos del servicio (versión 1.1)</a>
-    <a href="#datos">4. Política de tratamiento de datos personales</a>
-    <a href="#autor">5. Derechos de autor</a>
-    <a href="#consumidor">6. Tus derechos como consumidor</a>
-  </nav>
+  <p class="fecha">Vigente desde el 13 de noviembre de 2026. Toca cada tema para abrirlo; todo está escrito en palabras claras.</p>
+  <button class="todo" id="todo" type="button">Abrir todos los temas</button>
 
-  <section id="quien">
-    <h2>1. Quién responde por este sitio</h2>
+  <details class="tema" id="quien">
+    <summary><span><b>Quién responde por este sitio</b><small>Nombre, contacto y horario del prestador del servicio.</small></span></summary>
+    <div class="cuerpo">
     <p>Este sitio y los servicios que anuncia son de <b>Daniel Mauricio Delgado Burbano</b>, persona natural, con domicilio en Cali, Valle del Cauca, Colombia, que trabaja con la marca "Daniel Contador". Su número de identificación se informa en cada propuesta y cuenta de cobro, y a quien lo solicite por los canales de contacto.</p>
-    <div class="caja">Contacto y notificaciones: <a href="mailto:danielcontadorco@gmail.com">danielcontadorco@gmail.com</a><br>Horario de atención: Lunes a viernes de 6 a 10 p. m. y sábados de 8 a. m. a 3 p. m.</div>
-  </section>
+    <div class="caja">Contacto y notificaciones: <a href="mailto:danielcontadorco@gmail.com">danielcontadorco@gmail.com</a> · WhatsApp <a href="https://wa.me/573168146876">+57 316 814 6876</a><br>Horario de atención: Lunes a viernes de 6 a 10 p. m. y sábados de 8 a. m. a 3 p. m.</div>
+    <p>La autoridad de protección al consumidor y de datos personales en Colombia es la <a href="https://www.sic.gov.co" target="_blank" rel="noopener">Superintendencia de Industria y Comercio (www.sic.gov.co)</a>.</p></div>
+  </details>
 
-  <section id="uso">
-    <h2>2. Términos de uso del sitio</h2>
+  <details class="tema" id="uso">
+    <summary><span><b>Términos de uso del sitio</b><small>Las reglas para navegar esta página.</small></span></summary>
+    <div class="cuerpo">
     <p>Al navegar este sitio aceptas estas reglas. Si no estás de acuerdo, por favor no lo uses.</p>
     <h3>Para qué sirve el sitio</h3>
-    <p>Presenta los servicios de Daniel Contador y permite contactarlo. Aquí no se compra ni se paga nada: todo servicio se acuerda por escrito, de persona a persona, y se rige por los Términos del servicio (sección 3).</p>
+    <p>Presenta los servicios de Daniel Contador, permite elegirlos, aceptar los términos y contactarlo. Aquí no se paga nada ni se piden datos de tarjetas o cuentas: el pago se hace por transferencia, después de que Daniel te confirma por escrito el precio y el plazo. Todo servicio se rige por los Términos del servicio.</p>
     <h3>La información es general</h3>
-    <p>Los textos del sitio y los videos de las redes sociales son información educativa de carácter general. No son una asesoría para tu caso particular ni reemplazan la revisión de tus documentos. Las normas y cifras tributarias cambian; antes de tomar una decisión, consulta tu caso. Nada de lo publicado es una recomendación de inversión ni de productos o entidades financieras.</p>
+    <p>Los textos del sitio, la calculadora de gastos y los videos de las redes sociales son información educativa de carácter general. No son una asesoría para tu caso particular ni reemplazan la revisión de tus documentos. Las normas y cifras tributarias cambian; antes de tomar una decisión, consulta tu caso. Nada de lo publicado es una recomendación de inversión ni de productos o entidades financieras.</p>
     <h3>Precios</h3>
-    <p>Los precios publicados están en pesos colombianos y corresponden al servicio descrito. Los que dicen "desde" dependen de tu caso; el valor definitivo siempre se confirma por escrito antes de que pagues. No incluyen impuestos, sanciones ni tarifas que debas pagar a entidades como la DIAN o la Cámara de Comercio.</p>
+    <p>Los precios publicados están en pesos colombianos, son el valor total del servicio descrito y rigen mientras estén publicados. Los que dicen "desde" dependen de tu caso; el valor definitivo siempre se confirma por escrito antes de que pagues y esa confirmación vale 15 días. No hay costos de envío. No incluyen impuestos, sanciones ni tarifas que debas pagar a entidades como la DIAN o la Cámara de Comercio.</p>
+    <h3>Uso correcto</h3>
+    <p>No está permitido usar el sitio para hacerse pasar por otra persona, enviar información falsa, copiar su contenido o intentar dañar su funcionamiento.</p>
     <h3>Enlaces a otros sitios</h3>
     <p>Los botones llevan a WhatsApp y a redes sociales, que tienen sus propias condiciones y políticas de privacidad.</p>
     <h3>Cambios y ley aplicable</h3>
-    <p>Estos términos pueden actualizarse; la fecha de vigencia aparece arriba. Se rigen por las leyes de la República de Colombia.</p>
-  </section>
+    <p>Estos términos pueden actualizarse; la fecha de vigencia aparece arriba. Se rigen por las leyes de la República de Colombia.</p></div>
+  </details>
 
-  <section id="terminos">
-    <h2>3. Términos del servicio (versión 1.1)</h2>
-    <p>Son las reglas que aplican cuando contratas un servicio. Es el mismo texto del PDF que recibes con tu propuesta.</p>
+  <details class="tema" id="terminos">
+    <summary><span><b>Términos del servicio</b><small>Las reglas cuando contratas. Vigentes desde el 13 de noviembre de 2026.</small></span></summary>
+    <div class="cuerpo">
+    <p>Son las reglas que aplican cuando contratas un servicio. Es el mismo texto del PDF que recibes con tu propuesta. Vigentes desde el 13 de noviembre de 2026.</p>
     <a class="btn" href="aceptar.html">Aceptar los términos</a>
-    <h3>1. Quiénes somos tú y yo</h3><p>Presta el servicio <b>Daniel Mauricio Delgado Burbano</b>, persona natural, con domicilio en Cali, Colombia, que trabaja con la marca "Daniel Contador" (en adelante, "Daniel"). Su número de identificación aparece en cada cuenta de cobro. "El cliente" eres tú: la persona o el negocio que acepta estos términos.</p><p>Contacto: danielcontadorco@gmail.com · danielcontadorco.github.io</p>
-<h3>2. Qué servicio contratas</h3><p>El servicio, lo que incluye, su precio y su plazo son los que Daniel te confirma por escrito (propuesta, WhatsApp o correo) antes de que pagues. Lo que no esté en esa confirmación no hace parte del servicio y se cotiza aparte. El servicio es de orientación y preparación de documentos: no incluye recomendar inversiones ni productos financieros, ni representarte en procesos ante la DIAN u otras entidades.</p>
-<h3>3. Precio y forma de pago</h3><ul><li><b>Si el servicio cuesta $150.000 o menos:</b> lo pagas completo antes de empezar.</li><li><b>Si el servicio cuesta más de $150.000:</b> pagas la mitad antes de empezar y la otra mitad cuando el trabajo esté terminado, antes de recibir el documento final o de presentar la declaración.</li><li><b>Si es un plan mensual:</b> cada mes se paga por adelantado, dentro de los primeros 5 días del mes. No hay permanencia mínima: puedes cancelar el plan cuando quieras avisando por escrito, y el servicio va hasta el último día del mes que ya pagaste.</li><li><b>Si un plan mensual no se ha pagado el día 10:</b> el servicio queda en pausa hasta que se pague. Lo que venza durante la pausa es responsabilidad del cliente.</li><li>El precio que te confirmo es el total de mi servicio. No incluye impuestos, sanciones, intereses ni tarifas de entidades (DIAN, Cámara de Comercio, bancos): esos valores los pagas tú directamente a cada entidad. Daniel nunca recibe dinero destinado a impuestos.</li></ul>
-<h3>4. Plazos de entrega</h3><p>El plazo de cada servicio se cuenta en días hábiles desde que Daniel recibe <b>todos</b> los documentos de la lista y el pago inicial. Si falta un documento, el plazo empieza cuando llegue. El plazo exacto queda escrito en tu propuesta; en temporadas de alta demanda (por ejemplo, vencimientos de renta) puede ser mayor y se te informa antes de pagar.</p>
-<h3>5. Tu información</h3><p>Te comprometes a entregar información completa, verdadera y a tiempo. El trabajo se hace con lo que entregas: lo que no se informa no se puede tener en cuenta. Daniel no altera cifras, no omite ingresos y no crea soportes.</p>
-<h3>6. Declaraciones: tú apruebas, tú presentas y tú pagas</h3><p>Antes de presentar cualquier declaración recibes un borrador y lo apruebas por escrito. La declaración se presenta con tu usuario y tu firma electrónica, bajo tu responsabilidad como contribuyente. Los valores estimados de impuestos, sanciones o saldos a favor dependen de la información entregada y de la decisión de la entidad: no son una promesa de resultado.</p>
-<h3>7. Ajustes incluidos y garantía</h3><p>Cada servicio incluye los ajustes que diga tu propuesta y 15 días calendario para resolver dudas sobre lo entregado, sin costo. Si encuentras un error de cálculo o de registro cometido por Daniel, se corrige sin costo y con prioridad. Los cambios que nazcan de información nueva o distinta a la entregada al inicio se cotizan aparte.</p>
-<h3>8. Retracto y devoluciones</h3><p>Como el servicio se contrata a distancia, tienes derecho de retracto: puedes arrepentirte dentro de los 5 días hábiles siguientes a la aceptación de estos términos, y se te devuelve todo lo pagado en un máximo de 30 días calendario (artículo 47 de la Ley 1480 de 2011). Según la misma norma, el retracto no aplica cuando el servicio ya empezó a prestarse con tu acuerdo; por eso Daniel empieza a trabajar solo cuando tú lo pides al enviar tus documentos y hacer el pago.</p><p>Si Daniel no puede prestar el servicio, te devuelve lo pagado por la parte no prestada.</p>
-<h3>9. Responsabilidad</h3><p>Daniel responde por la calidad de su trabajo y por los errores propios, conforme a la ley. No responde por sanciones, intereses o mayores impuestos que se originen en información incompleta, falsa o entregada tarde, en la falta de pago del cliente, en decisiones que el cliente tome en contra de lo recomendado, ni en hechos anteriores al servicio. La orientación en finanzas personales es una guía: las decisiones sobre tu dinero son tuyas.</p>
-<h3>10. Confidencialidad y datos personales</h3><p>Todo lo que entregas es confidencial. Al aceptar, autorizas de forma previa, expresa e informada a Daniel Mauricio Delgado Burbano, como responsable del tratamiento, a recolectar, guardar y usar tus datos personales y financieros (y los de terceros que aparezcan en tus documentos, que declaras estar autorizado a entregar) para: prestarte el servicio, cobrarlo, contactarte sobre él, conservar el registro del trabajo y cumplir obligaciones legales.</p><p>Tus documentos se guardan en almacenamiento digital en la nube con acceso restringido y pueden procesarse con herramientas de software e inteligencia artificial, bajo la supervisión de Daniel; los servidores de esos proveedores pueden estar fuera de Colombia. No se venden ni se entregan a terceros para fines distintos. Los registros se conservan 5 años.</p><p>Tienes derecho a conocer, actualizar, rectificar y pedir que se eliminen tus datos, a revocar esta autorización y a presentar quejas ante la Superintendencia de Industria y Comercio (Ley 1581 de 2012). Para ejercerlos escribe a danielcontadorco@gmail.com. La Política de tratamiento de datos completa está en <a href="https://danielcontadorco.github.io/legal.html">danielcontadorco.github.io/legal.html</a></p>
-<h3>11. Claves y accesos</h3><p>Nunca envíes contraseñas. Los trámites se hacen contigo en pantalla compartida: tú escribes tus claves y Daniel te guía.</p>
-<h3>12. Comunicación y horario</h3><p>WhatsApp y correo electrónico son los canales oficiales. Horario de atención: lunes a viernes de 6 a 10 p. m. y sábados de 8 a. m. a 3 p. m. Los mensajes que lleguen fuera de ese horario se responden en el siguiente.</p>
-<h3>13. Propiedad de los documentos</h3><p>El documento que recibes es tuyo para tu uso personal o el de tu negocio. Las plantillas, formatos, guías y el método de trabajo son creación de Daniel y están protegidos por derecho de autor: no se pueden revender, publicar ni usar para prestar servicios a terceros sin su permiso escrito.</p>
-<h3>14. Cambios y diferencias</h3><p>A tu servicio le aplica la versión de los términos que aceptaste; si cambian, la versión nueva solo aplica a servicios nuevos. Cualquier desacuerdo se intenta resolver directamente durante 15 días hábiles. Si no se logra, puedes acudir a la Superintendencia de Industria y Comercio (www.sic.gov.co) o a un centro de conciliación. Estos términos se rigen por la ley colombiana.</p>
-<h3>Cómo aceptar (un minuto)</h3><p>Entra a <b><a href="https://danielcontadorco.github.io/aceptar.html">danielcontadorco.github.io/aceptar.html</a></b>, escribe tu nombre completo y tu documento, marca las dos casillas ("Acepto los términos" y "Autorizo el tratamiento de mis datos") y pulsa el botón. Se abre tu WhatsApp o tu correo con el mensaje de aceptación ya escrito: solo tienes que enviarlo. Ese mensaje, enviado desde tu número o tu correo, queda con fecha y hora y tiene la misma validez que una firma en papel (Ley 527 de 1999).</p>
-  </section>
+    <h3>1. Quiénes somos tú y yo</h3><p>Presta el servicio <b>Daniel Mauricio Delgado Burbano</b>, persona natural, con domicilio en Cali, Valle del Cauca, Colombia, que trabaja con la marca "Daniel Contador" (en adelante, "Daniel"). Su número de identificación aparece en cada propuesta y cuenta de cobro. "El cliente" eres tú: la persona o el negocio que acepta estos términos. Para contratar debes ser mayor de 18 años.</p><p>Contacto: danielcontadorco@gmail.com · <a href="https://danielcontadorco.github.io">danielcontadorco.github.io</a></p>
+<h3>2. Qué servicio contratas</h3><p>Los servicios y sus precios de referencia están publicados en <a href="https://danielcontadorco.github.io">danielcontadorco.github.io</a>. El servicio que contratas, lo que incluye, su precio final y su plazo son los que Daniel te confirma por escrito (propuesta, WhatsApp o correo) antes de que pagues. Esa confirmación vale 15 días. Lo que no esté en ella no hace parte del servicio y se cotiza aparte.</p><p>El servicio es de orientación y de preparación de documentos. No incluye recomendar inversiones ni productos o entidades financieras, ni representarte en procesos ante la DIAN u otras entidades.</p>
+<h3>3. Cómo se contrata</h3><ul><li><b>Eliges</b> uno o varios servicios en la página y pulsas "Continuar".</li><li><b>Aceptas</b> estos términos y autorizas el tratamiento de tus datos en <a href="https://danielcontadorco.github.io/aceptar.html">danielcontadorco.github.io/aceptar.html</a>, y envías el mensaje que la página arma con el resumen de tu pedido.</li><li><b>Daniel te confirma</b> que lo recibió, a más tardar al día siguiente, y te escribe el precio final y el plazo.</li><li><b>El servicio empieza</b> cuando haces el pago inicial y envías tus documentos. Antes de eso no debes nada.</li></ul>
+<h3>4. Precio y forma de pago</h3><ul><li><b>Si el servicio cuesta $150.000 o menos:</b> lo pagas completo antes de empezar.</li><li><b>Si el servicio cuesta más de $150.000:</b> pagas la mitad antes de empezar y la otra mitad cuando el trabajo esté terminado, antes de recibir el documento final o de presentar la declaración.</li><li><b>Si es un plan mensual:</b> cada mes se paga por adelantado, dentro de los primeros 5 días del mes. No tiene duración ni permanencia mínima: puedes cancelarlo cuando quieras avisando por escrito, y el servicio va hasta el último día del mes que ya pagaste.</li><li><b>Si un plan mensual no se ha pagado el día 10:</b> el servicio queda en pausa hasta que se pague. Lo que venza durante la pausa es responsabilidad del cliente.</li><li><b>Medios de pago:</b> transferencia a la cuenta o llave que aparece en tu cuenta de cobro. En esta página no se paga nada ni se piden datos de tarjetas.</li><li>El precio que te confirmo es el valor total de mi servicio. No incluye impuestos, sanciones, intereses ni tarifas de entidades (DIAN, Cámara de Comercio, bancos): esos valores los pagas tú directamente a cada entidad. Daniel nunca recibe dinero destinado a impuestos.</li></ul>
+<h3>5. Plazos de entrega</h3><p>El plazo de cada servicio se cuenta en días hábiles desde que Daniel recibe <b>todos</b> los documentos de la lista y el pago inicial. Si falta un documento, el plazo empieza cuando llegue. El plazo exacto queda escrito en tu confirmación; en temporadas de alta demanda (por ejemplo, vencimientos de renta) puede ser mayor y se te informa antes de pagar.</p><p>Si Daniel no entrega en el plazo confirmado por una causa suya, puedes terminar el servicio y pedir la devolución de todo lo pagado, que se hace en máximo 15 días calendario.</p>
+<h3>6. Tu información</h3><p>Te comprometes a entregar información completa, verdadera y a tiempo. El trabajo se hace con lo que entregas: lo que no se informa no se puede tener en cuenta. Daniel no altera cifras, no omite ingresos y no crea soportes.</p>
+<h3>7. Declaraciones: tú apruebas, tú presentas y tú pagas</h3><p>Antes de presentar cualquier declaración recibes un borrador y lo apruebas por escrito. La declaración se presenta con tu usuario y tu firma electrónica, bajo tu responsabilidad como contribuyente. Los valores estimados de impuestos, sanciones o saldos a favor dependen de la información entregada y de la decisión de la entidad: no son una promesa de resultado.</p>
+<h3>8. Ajustes incluidos y garantía</h3><p>Cada servicio incluye los ajustes que diga tu confirmación y 15 días calendario para resolver dudas sobre lo entregado, sin costo. Si encuentras un error de cálculo o de registro cometido por Daniel, se corrige sin costo y con prioridad; si no se puede corregir, se te devuelve lo que pagaste por ese trabajo.</p><p>En un servicio de orientación la garantía cubre la calidad del trabajo, no un resultado: Daniel responde por hacerlo con cuidado y con la norma vigente, pero no puede garantizar cuánto vas a ahorrar ni qué decidirá una entidad. Los cambios que nazcan de información nueva o distinta a la entregada al inicio se cotizan aparte.</p>
+<h3>9. Retracto, cancelación y devoluciones</h3><ul><li><b>Retracto (arrepentirte):</b> como el servicio se contrata a distancia, puedes arrepentirte dentro de los 5 días hábiles siguientes a tu aceptación, sin dar explicaciones, y se te devuelve todo lo pagado en máximo 15 días calendario (artículo 47 de la Ley 1480 de 2011). Según esa norma, el retracto no aplica cuando el servicio ya empezó a prestarse con tu acuerdo; por eso Daniel empieza a trabajar solo cuando tú lo pides al pagar y enviar tus documentos.</li><li><b>Si cancelas un servicio que ya empezó:</b> pagas solo el trabajo hecho hasta ese momento, que Daniel te detalla por escrito, y se te devuelve el resto.</li><li><b>Si Daniel no puede prestar el servicio:</b> te devuelve todo lo pagado por la parte no prestada.</li><li><b>Cómo se devuelve:</b> por el medio de pago que tú prefieras, en máximo 15 días calendario desde tu solicitud con los datos completos para la transferencia.</li><li><b>Reversión del pago:</b> si pagaste con tarjeta u otro instrumento de pago electrónico y hubo fraude, un cobro que no pediste o un servicio que no recibiste, puedes pedir la reversión: avísale a Daniel y a tu banco o entidad de pago dentro de los 5 días hábiles siguientes a cuando te enteraste (artículo 51 de la Ley 1480 de 2011).</li></ul>
+<h3>10. Cuándo Daniel puede no continuar</h3><p>Daniel puede terminar un servicio si se le pide alterar cifras, omitir ingresos, crear soportes o hacer algo contrario a la ley, o si la información necesaria no llega pese a haberla pedido por escrito. En esos casos cobra solo el trabajo ya hecho y devuelve el resto.</p>
+<h3>11. Responsabilidad</h3><p>Daniel responde por la calidad de su trabajo y por los errores propios, conforme a la ley. No responde por sanciones, intereses o mayores impuestos que se originen en información incompleta, falsa o entregada tarde, en la falta de pago del cliente, en decisiones que el cliente tome en contra de lo recomendado, ni en hechos anteriores al servicio. La orientación en finanzas personales es una guía: las decisiones sobre tu dinero son tuyas.</p>
+<h3>12. Confidencialidad y datos personales</h3><p>Todo lo que entregas es confidencial. Al aceptar, autorizas de forma previa, expresa e informada a Daniel Mauricio Delgado Burbano, como responsable del tratamiento, a recolectar, guardar y usar tus datos personales y financieros (y los de terceros que aparezcan en tus documentos, que declaras estar autorizado a entregar) para: prestarte el servicio, cobrarlo, contactarte sobre él, conservar el registro del trabajo y de tu aceptación, y cumplir obligaciones legales. Solo si marcaste la casilla opcional, también para enviarte consejos y novedades; esa autorización la puedes retirar cuando quieras.</p><p>Tus documentos se guardan en almacenamiento digital en la nube con acceso restringido y pueden procesarse con herramientas de software e inteligencia artificial, bajo la supervisión de Daniel; los servidores de esos proveedores pueden estar fuera de Colombia. No se venden ni se entregan a terceros para fines distintos. Los registros se conservan 5 años.</p><p>Tienes derecho a conocer, actualizar, rectificar y pedir que se eliminen tus datos, a revocar esta autorización y a presentar quejas ante la Superintendencia de Industria y Comercio (Ley 1581 de 2012). Para ejercerlos escribe a danielcontadorco@gmail.com. La Política de tratamiento de datos completa está en <a href="https://danielcontadorco.github.io/legal.html">danielcontadorco.github.io/legal.html</a></p>
+<h3>13. Claves y accesos</h3><p>Nunca envíes contraseñas. Los trámites se hacen contigo en pantalla compartida: tú escribes tus claves y Daniel te guía.</p>
+<h3>14. Comunicación y horario</h3><p>WhatsApp y correo electrónico son los canales oficiales. Horario de atención: lunes a viernes de 6 a 10 p. m. y sábados de 8 a. m. a 3 p. m. Los mensajes que lleguen fuera de ese horario se responden en el siguiente.</p>
+<h3>15. Propiedad de los documentos</h3><p>El documento que recibes es tuyo para tu uso personal o el de tu negocio. Las plantillas, formatos, guías y el método de trabajo son creación de Daniel y están protegidos por derecho de autor: no se pueden revender, publicar ni usar para prestar servicios a terceros sin su permiso escrito.</p>
+<h3>16. Peticiones, quejas y reclamos</h3><p>Puedes presentar una petición, queja o reclamo en <a href="https://danielcontadorco.github.io/legal.html">danielcontadorco.github.io/legal.html</a> (sección "Peticiones, quejas y reclamos"), que te da un número de radicado con fecha y hora, o por WhatsApp o correo. Daniel responde en máximo 15 días hábiles. Si no quedas conforme, puedes acudir a la Superintendencia de Industria y Comercio (www.sic.gov.co) o a un centro de conciliación.</p>
+<h3>17. Cambios y ley aplicable</h3><p>A tu servicio le aplican los términos que estaban vigentes el día en que aceptaste; esa fecha queda escrita en tu mensaje de aceptación. Si los términos cambian, el texto nuevo solo aplica a servicios nuevos; en los planes mensuales se te avisa con un mes de anticipación y puedes cancelar si no estás de acuerdo. Estos términos se rigen por la ley colombiana y no limitan ningún derecho que la ley te dé como consumidor.</p>
+<h3>Cómo aceptar (un minuto)</h3><p>Entra a <b><a href="https://danielcontadorco.github.io">danielcontadorco.github.io</a></b>, elige tus servicios y pulsa "Continuar" (o entra directo a <a href="https://danielcontadorco.github.io/aceptar.html">danielcontadorco.github.io/aceptar.html</a>). Escribe tu nombre completo y tu documento y marca las dos casillas necesarias: "Acepto los términos" y "Autorizo el tratamiento de mis datos". La tercera casilla, para recibir consejos y novedades, es opcional. Al pulsar el botón se abre tu WhatsApp o tu correo con el mensaje de aceptación ya escrito: solo tienes que enviarlo. Ese mensaje, enviado desde tu número o tu correo, queda con fecha y hora y tiene la misma validez que una firma en papel (Ley 527 de 1999).</p></div>
+  </details>
 
-  <section id="datos">
-    <h2>4. Política de tratamiento de datos personales</h2>
-    <p>Esta política cumple la Ley 1581 de 2012 y el Decreto 1377 de 2013 (compilado en el Decreto 1074 de 2015).</p>
+  <details class="tema" id="datos">
+    <summary><span><b>Política de tratamiento de datos personales</b><small>Qué datos se recogen, para qué, y cómo ejercer tus derechos.</small></span></summary>
+    <div class="cuerpo">
+    <p>Esta política sigue la Ley 1581 de 2012 y el Decreto 1377 de 2013 (compilado en el Decreto 1074 de 2015).</p>
     <h3>Responsable</h3>
-    <p>Daniel Mauricio Delgado Burbano, Cali, Colombia. Correo: <a href="mailto:danielcontadorco@gmail.com">danielcontadorco@gmail.com</a>. Él mismo atiende las consultas y reclamos sobre datos personales.</p>
+    <p>Daniel Mauricio Delgado Burbano, Cali, Valle del Cauca, Colombia. Correo: <a href="mailto:danielcontadorco@gmail.com">danielcontadorco@gmail.com</a> · WhatsApp <a href="https://wa.me/573168146876">+57 316 814 6876</a>. Él mismo atiende las consultas y reclamos sobre datos personales.</p>
     <h3>Qué datos se recogen</h3>
     <ul>
-      <li><b>Al navegar este sitio:</b> ninguno. El sitio no tiene formularios que guarden datos, no usa cookies propias ni herramientas de seguimiento o publicidad. Está alojado en GitHub Pages, cuyo proveedor puede registrar datos técnicos como la dirección IP por razones de seguridad.</li>
+      <li><b>Al navegar este sitio:</b> ninguno. Los formularios (aceptación y reclamos) no guardan ni envían nada por sí solos: arman un mensaje que tú decides enviar desde tu WhatsApp o tu correo. El sitio no usa cookies ni herramientas de seguimiento o publicidad. Está alojado en GitHub Pages, cuyo proveedor puede registrar datos técnicos como la dirección IP por razones de seguridad.</li>
       <li><b>Cuando escribes por WhatsApp, correo o redes:</b> tu nombre, tu número o usuario y lo que cuentes en la conversación.</li>
-      <li><b>Cuando contratas un servicio:</b> nombre, número de documento, datos de contacto y la información financiera y tributaria necesaria para el trabajo (por ejemplo extractos, certificados de ingresos, deudas, facturas y declaraciones).</li>
+      <li><b>Cuando aceptas los términos:</b> nombre, número de documento, servicios elegidos, fecha y hora, y si autorizaste o no recibir consejos y novedades.</li>
+      <li><b>Cuando contratas un servicio:</b> datos de contacto y la información financiera y tributaria necesaria para el trabajo (por ejemplo extractos, certificados de ingresos, deudas, facturas y declaraciones).</li>
     </ul>
+    <p>No se piden datos sensibles (salud, orientación política, religión, datos biométricos). Si aparecen en un documento que envías, se usan solo para el trabajo y puedes taparlos antes de enviarlo.</p>
     <h3>Para qué se usan</h3>
     <ul>
       <li>Responder tus mensajes y preparar tu propuesta.</li>
       <li>Prestar el servicio contratado, cobrarlo y dejar constancia del trabajo y de tu aceptación.</li>
       <li>Contactarte sobre tu servicio y recordarte fechas que te afectan.</li>
       <li>Cumplir obligaciones legales y atender requerimientos de autoridades.</li>
+      <li><b>Solo si lo autorizaste en la casilla opcional:</b> enviarte consejos y novedades. No es requisito para contratar y lo cancelas cuando quieras con un mensaje.</li>
     </ul>
-    <p>No se usan para enviarte publicidad sin tu permiso, no se venden y no se entregan a terceros para fines distintos.</p>
-    <h3>Cómo se guardan</h3>
-    <p>En almacenamiento digital en la nube con acceso restringido. Para preparar los trabajos pueden procesarse con herramientas de software e inteligencia artificial, siempre bajo la supervisión de Daniel. Esos proveedores actúan como encargados y sus servidores pueden estar fuera de Colombia. Nunca se piden ni se guardan contraseñas.</p>
+    <p>No se venden ni se entregan a terceros para fines distintos.</p>
+    <h3>Cómo se guardan y con quién se comparten</h3>
+    <p>En almacenamiento digital en la nube con acceso restringido. Para preparar los trabajos pueden procesarse con herramientas de software e inteligencia artificial, siempre bajo la supervisión de Daniel. Esos proveedores (almacenamiento, mensajería y software) actúan como encargados y sus servidores pueden estar fuera de Colombia. Solo se entregan a una autoridad cuando la ley lo ordena. Nunca se piden ni se guardan contraseñas.</p>
+    <h3>Constancia de tu autorización</h3>
+    <p>La prueba de lo que aceptaste es el mensaje que tú mismo enviaste: lleva tu nombre, documento, servicios, la fecha de los términos que aceptaste y la fecha y hora de envío, y queda guardado con tu número o tu correo. Si después cambias o retiras una autorización, ese mensaje también se guarda con su fecha.</p>
     <h3>Cuánto tiempo</h3>
     <p>Los datos de quien solo consulta se conservan mientras dure la conversación comercial y hasta por un año. Los registros de un servicio prestado se conservan 5 años después de terminado, por respaldo legal; luego se eliminan.</p>
     <h3>Tus derechos</h3>
-    <p>Como titular puedes: conocer, actualizar y rectificar tus datos; pedir prueba de la autorización que diste; saber qué uso se les ha dado; revocar la autorización o pedir que se eliminen cuando no exista un deber legal o contractual de conservarlos; acceder gratis a ellos; y presentar quejas ante la Superintendencia de Industria y Comercio.</p>
+    <p>Como titular puedes: conocer, actualizar y rectificar tus datos; pedir prueba de la autorización que diste; saber qué uso se les ha dado; revocar la autorización o pedir que se eliminen cuando no exista un deber legal o contractual de conservarlos; acceder gratis a ellos; y presentar quejas ante la Superintendencia de Industria y Comercio después de haber reclamado primero ante el responsable.</p>
     <h3>Cómo ejercerlos</h3>
-    <p>Escribe a <a href="mailto:danielcontadorco@gmail.com">danielcontadorco@gmail.com</a> con tu nombre, tu número de documento y lo que solicitas. Las consultas se responden en máximo 10 días hábiles y los reclamos en máximo 15 días hábiles, como ordena la ley.</p>
+    <p>Usa el formulario de <a href="#reclamos">Peticiones, quejas y reclamos</a> (elige "Datos personales") o escribe a <a href="mailto:danielcontadorco@gmail.com">danielcontadorco@gmail.com</a> con tu nombre, tu número de documento y lo que solicitas. Las consultas se responden en máximo 10 días hábiles y los reclamos en máximo 15 días hábiles, como ordena la ley. Si al reclamo le falta información, se te pide dentro de los 5 días hábiles siguientes.</p>
     <h3>Menores de edad</h3>
     <p>Los servicios están dirigidos a mayores de 18 años. No se recogen a sabiendas datos de menores.</p>
     <h3>Vigencia</h3>
-    <p>Esta política rige desde el 13 de noviembre de 2026. Si cambia de forma importante, se publica aquí la nueva versión con su fecha.</p>
-  </section>
+    <p>Esta política rige desde el 13 de noviembre de 2026. Si cambia de forma importante, se publica aquí el texto nuevo con su fecha y se avisa a los clientes activos.</p></div>
+  </details>
 
-  <section id="autor">
-    <h2>5. Derechos de autor</h2>
+  <details class="tema" id="cookies">
+    <summary><span><b>Política de cookies</b><small>Este sitio no usa cookies. Aquí se explica por qué no ves un aviso.</small></span></summary>
+    <div class="cuerpo">
+    <p>Una cookie es un archivo pequeño que una página guarda en tu navegador para reconocerte o seguir lo que haces.</p>
+    <div class="caja"><b>Este sitio no instala cookies de ningún tipo:</b> ni necesarias, ni de medición (analíticas), ni de publicidad. Tampoco guarda información en tu navegador ni carga contenido de terceros (no hay Google Analytics, píxeles de redes sociales, mapas, videos incrustados ni tipos de letra externos).</div>
+    <p>Por eso no aparece un aviso para aceptar o rechazar cookies: no hay nada que autorizar. Lo que elijas en "Arma tu plan" solo viaja en la dirección de la página (por ejemplo <i>aceptar.html?s=q,r</i>) y no contiene datos personales.</p>
+    <h3>Lo que sí puede pasar</h3>
+    <ul>
+      <li>El proveedor de alojamiento (GitHub Pages) puede registrar datos técnicos de la visita, como la dirección IP, por seguridad.</li>
+      <li>Al pulsar un botón de WhatsApp o de una red social sales de este sitio; esas plataformas tienen sus propias cookies y políticas.</li>
+    </ul>
+    <h3>Si esto cambia</h3>
+    <p>Si algún día se agregan cookies que no sean indispensables (de medición o de publicidad), antes de activarlas se mostrará un aviso para aceptarlas, rechazarlas o configurarlas por tipo, y podrás cambiar tu decisión cuando quieras. Esta política se actualizará con la lista de cookies y su fecha.</p></div>
+  </details>
+
+  <details class="tema" id="devoluciones">
+    <summary><span><b>Devoluciones, retracto y reembolsos</b><small>Cuándo puedes arrepentirte, cancelar o pedir tu dinero, y en cuánto tiempo.</small></span></summary>
+    <div class="cuerpo">
+    <p>Los servicios de Daniel Contador son trabajos hechos a la medida, no productos; por eso no hay "cambios" de mercancía. Estas son las cuatro situaciones en las que se devuelve dinero:</p>
+    <h3>1. Retracto: te arrepentiste</h3>
+    <p>Como contratas a distancia, puedes arrepentirte dentro de los <b>5 días hábiles</b> siguientes a tu aceptación, sin dar explicaciones. <b>Excepción legal:</b> el retracto no aplica si el servicio ya empezó a prestarse con tu acuerdo, es decir, cuando ya pagaste y enviaste tus documentos para que Daniel empezara (artículo 47 de la Ley 1480 de 2011).</p>
+    <h3>2. Cancelaste un servicio que ya empezó</h3>
+    <p>Pagas solo el trabajo hecho hasta ese momento, que se te detalla por escrito, y se te devuelve el resto. Los planes mensuales se cancelan cuando quieras; el mes ya pagado se presta completo.</p>
+    <h3>3. Garantía: el trabajo tiene un error</h3>
+    <p>Si encuentras un error de cálculo o de registro cometido por Daniel, se corrige sin costo y con prioridad. Si no se puede corregir, se devuelve lo pagado por ese trabajo. La garantía cubre la calidad del trabajo, no un resultado (por ejemplo, cuánto vas a ahorrar o qué decidirá la DIAN), como lo prevé el artículo 7 de la Ley 1480 de 2011 para los servicios.</p>
+    <h3>4. Daniel no pudo prestar el servicio o no cumplió el plazo</h3>
+    <p>Puedes terminar el servicio y se te devuelve todo lo pagado por la parte no prestada.</p>
+    <h3>Reversión del pago</h3>
+    <p>Es distinta del retracto: la tramita tu banco o entidad de pago. Aplica si pagaste con tarjeta u otro instrumento de pago electrónico y hubo fraude, un cobro que no pediste o un servicio que no recibiste. Debes avisar a Daniel y a tu entidad dentro de los <b>5 días hábiles</b> siguientes a cuando te enteraste (artículo 51 de la Ley 1480 de 2011).</p>
+    <h3>Cómo pedirlo y en cuánto tiempo</h3>
+    <ul>
+      <li>Escribe por el formulario de <a href="#reclamos">Peticiones, quejas y reclamos</a> (elige "Retracto o devolución"), por WhatsApp o a <a href="mailto:danielcontadorco@gmail.com">danielcontadorco@gmail.com</a>, con tu nombre, el servicio y a dónde quieres que se te devuelva.</li>
+      <li>La devolución se hace por el <b>medio de pago que tú prefieras</b>, en máximo <b>15 días calendario</b> desde tu solicitud con los datos completos (Ley 2439 de 2024).</li>
+      <li>No se cobran descuentos ni retenciones sobre lo que se devuelve por retracto.</li>
+    </ul></div>
+  </details>
+
+  <details class="tema" id="reclamos">
+    <summary><span><b>Peticiones, quejas y reclamos</b><small>Formulario con número de radicado. Respuesta en máximo 15 días hábiles.</small></span></summary>
+    <div class="cuerpo">
+    <p>Si algo no salió como esperabas, dímelo primero a mí. Llena el formulario: te da un <b>número de radicado</b> con fecha y hora y abre tu WhatsApp o tu correo con el mensaje listo. Para hacerle seguimiento, responde en esa misma conversación citando el radicado.</p>
+    <form id="pqr" novalidate>
+      <label for="pTipo">¿Qué quieres presentar?</label>
+      <select id="pTipo"><option>Petición o pregunta</option><option>Queja</option><option>Reclamo por un servicio</option><option>Retracto o devolución</option><option>Datos personales (consultar, corregir, eliminar o retirar una autorización)</option></select>
+      <label for="pNombre">Nombre completo</label><input type="text" id="pNombre" autocomplete="name">
+      <label for="pDetalle">Cuéntame qué pasó y qué solicitas</label><textarea id="pDetalle" rows="4"></textarea>
+      <p class="aviso" id="pAviso" role="alert"></p>
+      <button class="btn" type="submit">Generar radicado</button>
+    </form>
+    <div class="caja" id="pListo" hidden>
+      <p><b>Tu radicado es <span id="pNum"></span></b>. Guárdalo. Ahora envía el mensaje para que quede presentado:</p>
+      <pre id="pTexto"></pre>
+      <p><a class="btn" id="pWa" target="_blank" rel="noopener">Enviar por WhatsApp</a> <a class="btn linea" id="pMail">Enviar por correo</a></p>
+    </div>
+    <h3>Tiempos de respuesta</h3>
+    <ul>
+      <li>Te confirmo que lo recibí a más tardar al día siguiente.</li>
+      <li>Peticiones, quejas y reclamos sobre un servicio: respuesta en máximo 15 días hábiles (artículo 58 de la Ley 1480 de 2011).</li>
+      <li>Consultas sobre tus datos personales: máximo 10 días hábiles. Reclamos sobre datos: máximo 15 días hábiles (Ley 1581 de 2012).</li>
+    </ul>
+    <p>Si no quedas conforme con la respuesta, puedes acudir a la <a href="https://www.sic.gov.co" target="_blank" rel="noopener">Superintendencia de Industria y Comercio (www.sic.gov.co)</a> o a un centro de conciliación.</p></div>
+  </details>
+
+  <details class="tema" id="autor">
+    <summary><span><b>Derechos de autor y licencias</b><small>Qué puedes hacer con el contenido y de dónde salen las imágenes.</small></span></summary>
+    <div class="cuerpo">
     <p><b>© 2026 Daniel Mauricio Delgado Burbano. Todos los derechos reservados.</b></p>
     <p>Los textos, el diseño, las imágenes, los guiones, los videos publicados como @danielcontadorco, las plantillas, los formatos y las guías de Daniel Contador son obras protegidas por la Ley 23 de 1982 y la Decisión Andina 351 de 1993. La protección existe desde que la obra se crea, sin necesidad de registro.</p>
     <ul>
@@ -124,19 +211,39 @@
       <li><b>No puedes, sin permiso escrito:</b> copiar, descargar para volver a publicar, modificar, recortar la marca, vender o usar este contenido para ofrecer servicios propios o de terceros.</li>
     </ul>
     <p>El nombre "Daniel Contador", el logo y el eslogan "Cuentas claras, vida tranquila." identifican este negocio y no pueden usarse para hacerse pasar por él. Si encuentras una copia o una suplantación, avisa a <a href="mailto:danielcontadorco@gmail.com">danielcontadorco@gmail.com</a>.</p>
-  </section>
-
-  <section id="consumidor">
-    <h2>6. Tus derechos como consumidor</h2>
+    <h3>Recursos de terceros usados en este sitio</h3>
     <ul>
-      <li><b>Información clara:</b> antes de pagar recibes por escrito qué incluye el servicio, cuánto cuesta y cuándo se entrega.</li>
-      <li><b>Retracto:</b> como el servicio se contrata a distancia, puedes arrepentirte dentro de los 5 días hábiles siguientes a la aceptación, si el servicio no ha empezado a prestarse con tu acuerdo. La devolución se hace en máximo 30 días calendario (artículo 47 de la Ley 1480 de 2011).</li>
-      <li><b>Garantía:</b> los errores de cálculo o de registro cometidos por Daniel se corrigen sin costo.</li>
-      <li><b>Quejas y reclamos:</b> escribe primero a <a href="mailto:danielcontadorco@gmail.com">danielcontadorco@gmail.com</a>; la respuesta llega en máximo 15 días hábiles.</li>
-    </ul>
-    <p>La autoridad de protección al consumidor y de datos personales en Colombia es la <a href="https://www.sic.gov.co" target="_blank" rel="noopener">Superintendencia de Industria y Comercio (www.sic.gov.co)</a>.</p>
-  </section>
+      <li><b>Logo, textos y diseño:</b> creación propia.</li>
+      <li><b>Íconos de redes sociales:</b> del proyecto Simple Icons (licencia CC0). Los logotipos de TikTok, Instagram, Facebook, YouTube y WhatsApp son marcas de sus dueños y se usan solo para enlazar a los perfiles oficiales.</li>
+      <li><b>Tipos de letra:</b> los del sistema de cada dispositivo. El sitio no usa fotografías ni imágenes de bancos de imágenes.</li>
+    </ul></div>
+  </details>
 </main>
 <footer>© 2026 Daniel Mauricio Delgado Burbano · Daniel Contador · Cali, Colombia · <a href="index.html">Inicio</a></footer>
+<script>
+  var WHATSAPP = "573168146876", CORREO = "danielcontadorco@gmail.com";
+  var temas = [].slice.call(document.querySelectorAll("details.tema"));
+  function abre() { var d = location.hash && document.querySelector("details" + location.hash); if (d) { d.open = true; d.scrollIntoView(); } }
+  window.addEventListener("hashchange", abre); abre();
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) { a.addEventListener("click", function () { var d = document.querySelector("details" + a.getAttribute("href")); if (d) d.open = true; }); });
+  document.getElementById("todo").addEventListener("click", function () {
+    var abrir = temas.some(function (d) { return !d.open; });
+    temas.forEach(function (d) { d.open = abrir; }); this.textContent = abrir ? "Cerrar todos los temas" : "Abrir todos los temas";
+  });
+  var $ = function (i) { return document.getElementById(i); };
+  $("pqr").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var n = $("pNombre").value.trim(), d = $("pDetalle").value.trim();
+    var falta = n.split(/\s+/).length < 2 ? "Escribe tu nombre completo." : d.length < 10 ? "Cuéntame qué pasó y qué solicitas." : "";
+    $("pAviso").textContent = falta; if (falta) return;
+    var p = new Intl.DateTimeFormat("es-CO", { timeZone: "America/Bogota", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false }).formatToParts(new Date()).reduce(function (o, x) { o[x.type] = x.value; return o; }, {});
+    var rad = "DC-" + p.year + p.month + p.day + "-" + p.hour + p.minute + p.second + "-" + Math.floor(100 + Math.random() * 900);
+    var t = "RADICADO " + rad + "\nTipo: " + $("pTipo").value + "\nNombre: " + n + "\nFecha: " + p.day + "/" + p.month + "/" + p.year + " " + p.hour + ":" + p.minute + " (hora de Colombia)\nSolicitud: " + d;
+    $("pNum").textContent = rad; $("pTexto").textContent = t;
+    if (WHATSAPP) $("pWa").href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(t); else $("pWa").hidden = true;
+    $("pMail").href = "mailto:" + CORREO + "?subject=" + encodeURIComponent("Radicado " + rad) + "&body=" + encodeURIComponent(t);
+    $("pListo").hidden = false; $("pListo").scrollIntoView({ block: "center" });
+  });
+</script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aceptar los términos | Daniel Contador</title>
+<title>Confirmar mi plan | Daniel Contador</title>
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/png" href="logo.png">
 <meta name="theme-color" content="#104B35">
@@ -11,79 +11,114 @@
   :root { --verde:#104B35; --tinta:#1B2620; --gris:#586860; --fondo:#F4F7F5; --linea:#DCE5E0; --acento:#F2C14E; --suave:#E7F0EB; }
   * { box-sizing:border-box; }
   body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; color:var(--tinta); background:var(--fondo); line-height:1.55; }
-  .barra { background:var(--verde); color:#fff; } .barra div { max-width:560px; margin:0 auto; padding:16px; }
+  .barra { background:var(--verde); color:#fff; position:sticky; top:0; z-index:5; } .barra div { max-width:600px; margin:0 auto; padding:12px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
   .barra a { color:#fff; text-decoration:none; font-weight:800; display:flex; align-items:center; gap:10px; } .barra img { width:38px; height:38px; border-radius:50%; border:2px solid #fff; }
-  main { max-width:560px; margin:0 auto; padding:24px 16px 60px; }
+  .barra a.volver { font-weight:600; font-size:.9rem; opacity:.9; }
+  main { max-width:600px; margin:0 auto; padding:22px 16px 60px; }
+  .ruta { display:flex; gap:6px; margin:0 0 16px; padding:0; list-style:none; font-size:.82rem; font-weight:700; color:var(--gris); }
+  .ruta li { flex:1; border-top:4px solid var(--linea); padding-top:6px; } .ruta li.hecho { border-color:var(--verde); color:var(--verde); }
   h1 { color:var(--verde); font-size:1.7rem; letter-spacing:-.02em; margin:0 0 6px; }
-  .sub { color:var(--gris); margin:0 0 18px; }
+  h2 { color:var(--verde); font-size:1.05rem; margin:18px 0 8px; }
+  .sub { color:var(--gris); margin:0 0 16px; }
   form, .listo { background:#fff; border:1px solid var(--linea); border-radius:16px; padding:22px; }
-  label { display:block; font-weight:700; margin:0 0 4px; font-size:.95rem; }
+  form h2:first-child { margin-top:0; }
+  label.campo { display:block; font-weight:700; margin:0 0 4px; font-size:.95rem; }
   input[type=text] { width:100%; padding:12px 14px; border:1.5px solid var(--linea); border-radius:10px; font:inherit; margin:0 0 14px; }
   input[type=text]:focus { outline:none; border-color:var(--verde); }
-  .casilla { display:flex; gap:10px; align-items:flex-start; background:var(--suave); border-radius:10px; padding:12px 14px; margin:0 0 10px; font-weight:500; font-size:.95rem; }
-  .casilla input { width:20px; height:20px; margin-top:2px; flex:none; accent-color:var(--verde); }
+  .op, .casilla { display:flex; gap:10px; align-items:flex-start; border-radius:10px; padding:10px 14px; margin:0 0 8px; font-size:.95rem; cursor:pointer; }
+  .op { border:1.5px solid var(--linea); font-weight:600; } .op small { display:block; font-weight:500; color:var(--gris); }
+  .casilla { background:var(--suave); }
+  .casilla.opc { background:#fff; border:1.5px dashed var(--linea); }
+  .op input, .casilla input { width:20px; height:20px; margin-top:2px; flex:none; accent-color:var(--verde); }
   a { color:var(--verde); }
   .btn { display:block; width:100%; text-align:center; background:var(--verde); color:#fff; padding:15px; border-radius:12px; font-weight:800; font-size:1rem; border:0; cursor:pointer; text-decoration:none; margin-top:10px; font-family:inherit; }
   .btn.dos { background:#fff; color:var(--verde); box-shadow:inset 0 0 0 2px var(--verde); }
-  .aviso { color:#A33; font-size:.9rem; min-height:1.3em; margin:6px 0 0; }
+  .aviso { color:#A33; font-size:.9rem; min-height:1.3em; margin:6px 0 0; font-weight:600; }
   .nota { color:var(--gris); font-size:.85rem; margin:14px 0 0; }
   pre { white-space:pre-wrap; background:var(--suave); border-radius:10px; padding:12px 14px; font:inherit; font-size:.92rem; margin:10px 0; }
   [hidden] { display:none !important; }
 </style>
 </head>
 <body>
-<div class="barra"><div><a href="index.html"><img src="logo.png" alt="">Daniel Contador</a></div></div>
+<div class="barra"><div><a href="index.html"><img src="logo.png" alt="">Daniel Contador</a><a class="volver" href="index.html#servicios">← Cambiar servicios</a></div></div>
 <main>
-  <h1>Aceptar los términos</h1>
-  <p class="sub">Toma un minuto. Antes de aceptar, lee los <a href="legal.html#terminos" target="_blank">Términos del servicio (versión <span class="v"></span>)</a> y la <a href="legal.html#datos" target="_blank">Política de tratamiento de datos</a>.</p>
+  <ol class="ruta"><li class="hecho">1. Eliges</li><li class="hecho" id="r2">2. Aceptas</li><li id="r3">3. Envías</li></ol>
+  <h1>Confirma tu plan</h1>
+  <p class="sub">Toma un minuto. Con este mensaje todavía no pagas nada: después de recibirlo te confirmo por escrito el precio y la fecha de entrega.</p>
 
   <form id="f" novalidate>
-    <label for="nombre">Nombre completo</label>
+    <h2>Lo que elegiste</h2>
+    <div id="lista"></div>
+    <h2>Tus datos</h2>
+    <label class="campo" for="nombre">Nombre completo</label>
     <input type="text" id="nombre" autocomplete="name" required>
-    <label for="doc">Número de documento (cédula o NIT)</label>
+    <label class="campo" for="doc">Número de documento (cédula o NIT)</label>
     <input type="text" id="doc" inputmode="numeric" required>
-    <label for="servicio">Servicio que contratas</label>
-    <input type="text" id="servicio" placeholder="Ej.: Quincena en orden" required>
-    <label class="casilla"><input type="checkbox" id="c1"><span>He leído y acepto los Términos del servicio de Daniel Contador, versión <span class="v"></span>.</span></label>
-    <label class="casilla"><input type="checkbox" id="c2"><span>Autorizo a Daniel Mauricio Delgado Burbano a tratar mis datos personales para prestarme el servicio, según su Política de tratamiento de datos.</span></label>
-    <p class="aviso" id="aviso"></p>
-    <button class="btn" type="submit">Acepto</button>
+    <h2>Tu aceptación</h2>
+    <label class="casilla"><input type="checkbox" id="c1"><span>He leído y acepto los <a href="legal.html#terminos" target="_blank">Términos del servicio</a> de Daniel Contador, vigentes desde el <span class="v"></span>.</span></label>
+    <label class="casilla"><input type="checkbox" id="c2"><span>Autorizo a Daniel Mauricio Delgado Burbano a tratar mis datos personales para prestarme el servicio, según su <a href="legal.html#datos" target="_blank">Política de tratamiento de datos</a>.</span></label>
+    <label class="casilla opc"><input type="checkbox" id="c3"><span><b>Opcional:</b> quiero recibir por WhatsApp consejos y novedades de Daniel Contador. Puedo cancelarlo cuando quiera.</span></label>
+    <p class="aviso" id="aviso" role="alert"></p>
+    <button class="btn" type="submit">Acepto y continúo</button>
+    <p class="nota">Las dos primeras casillas son necesarias para contratar; la tercera no. Esta página no guarda tus datos: solo arma el mensaje que tú envías.</p>
   </form>
 
   <div class="listo" id="listo" hidden>
     <b>Último paso: envía el mensaje.</b>
-    <p style="margin:6px 0 0">Tu aceptación queda registrada cuando me llega este mensaje desde tu número o tu correo:</p>
+    <p style="margin:6px 0 0">Este es el resumen de tu pedido y tu aceptación. Queda registrada cuando me llega desde tu número o tu correo:</p>
     <pre id="texto"></pre>
     <a class="btn" id="wa" target="_blank" rel="noopener">Enviar por WhatsApp</a>
     <a class="btn dos" id="mail">Enviar por correo</a>
     <button class="btn dos" id="copiar" type="button">Copiar el mensaje</button>
-    <p class="nota">Se abre tu aplicación con el mensaje ya escrito; solo pulsa enviar. Esta página no guarda tus datos.</p>
+    <button class="btn dos" id="editar" type="button">Corregir algo</button>
+    <p class="nota">Se abre tu aplicación con el mensaje ya escrito; solo pulsa enviar. Te respondo con la confirmación de recibido a más tardar al día siguiente.</p>
   </div>
-  <p class="nota">Este mensaje, enviado por ti, tiene la misma validez que una firma en papel (Ley 527 de 1999).</p>
+  <p class="nota">Este mensaje, enviado por ti, tiene la misma validez que una firma en papel (Ley 527 de 1999). Si te arrepientes, tienes 5 días hábiles para decírmelo: mira <a href="legal.html#devoluciones" target="_blank">devoluciones y reembolsos</a>.</p>
 </main>
 <script>
   // Mismo número que en index.html (57 + número, sin espacios). Vacío = solo se ofrece correo.
-  var WHATSAPP = "";
+  var WHATSAPP = "573168146876";
   var CORREO = "danielcontadorco@gmail.com";
-  var VERSION = "1.1";
-  document.querySelectorAll(".v").forEach(function (e) { e.textContent = VERSION; });
+  // Fecha desde la que rigen los términos publicados. La escribe pagina-legal.mjs; no la cambies a mano.
+  var VIGENCIA = "13 de noviembre de 2026";
+  // Mismos códigos y nombres que las tarjetas de index.html (data-id y data-nombre).
+  var SERVICIOS = [
+    ["q", "Quincena en orden", "$80.000, pago único"],
+    ["d", "Plan Salir de deudas", "$150.000, pago único"],
+    ["r", "Declaración de renta", "Desde $150.000"],
+    ["a", "Acompañamiento mensual", "$90.000 al mes, sin permanencia"],
+    ["b", "Cuentas claras cada mes (negocio)", "Desde $280.000 al mes, sin permanencia"],
+    ["n", "Negocio con IVA o Régimen Simple", "Desde $480.000 al mes, sin permanencia"],
+    ["f", "Facturación electrónica", "$180.000, pago único"],
+    ["t", "Trámites y decisiones", "Desde $50.000"]
+  ];
   var $ = function (id) { return document.getElementById(id); };
+  document.querySelectorAll(".v").forEach(function (e) { e.textContent = VIGENCIA; });
+  var pedidos = (new URLSearchParams(location.search).get("s") || "").split(",");
+  SERVICIOS.forEach(function (s) {
+    var l = document.createElement("label"); l.className = "op";
+    var c = document.createElement("input"); c.type = "checkbox"; c.value = s[1]; c.checked = pedidos.indexOf(s[0]) >= 0;
+    var t = document.createElement("span"); t.textContent = s[1];
+    var p = document.createElement("small"); p.textContent = s[2]; t.appendChild(p);
+    l.appendChild(c); l.appendChild(t); $("lista").appendChild(l);
+  });
   $("f").addEventListener("submit", function (e) {
     e.preventDefault();
-    var n = $("nombre").value.trim(), d = $("doc").value.trim(), s = $("servicio").value.trim();
-    if (n.split(/\s+/).length < 2) { $("aviso").textContent = "Escribe tu nombre completo (nombre y apellido)."; return; }
-    if (d.replace(/\D/g, "").length < 5) { $("aviso").textContent = "Escribe tu número de documento."; return; }
-    if (!s) { $("aviso").textContent = "Escribe el servicio que contratas."; return; }
-    if (!$("c1").checked || !$("c2").checked) { $("aviso").textContent = "Marca las dos casillas para aceptar."; return; }
+    var n = $("nombre").value.trim(), d = $("doc").value.trim();
+    var s = [].slice.call(document.querySelectorAll("#lista input:checked")).map(function (c) { return c.value; });
+    var falta = !s.length ? "Elige al menos un servicio." : n.split(/\s+/).length < 2 ? "Escribe tu nombre completo (nombre y apellido)." : d.replace(/\D/g, "").length < 5 ? "Escribe tu número de documento." : (!$("c1").checked || !$("c2").checked) ? "Marca las dos primeras casillas para aceptar." : "";
+    $("aviso").textContent = falta; if (falta) return;
     var f = new Date().toLocaleString("es-CO", { timeZone: "America/Bogota", dateStyle: "long", timeStyle: "short" });
-    var t = "ACEPTO los Términos del servicio de Daniel Contador, versión " + VERSION + ", y AUTORIZO el tratamiento de mis datos personales según su Política de tratamiento de datos.\n" +
-      "Nombre: " + n + "\nDocumento: " + d + "\nServicio: " + s + "\nFecha: " + f + " (hora de Colombia)";
+    var t = "ACEPTO los Términos del servicio de Daniel Contador, vigentes desde el " + VIGENCIA + ", y AUTORIZO el tratamiento de mis datos personales según su Política de tratamiento de datos.\n" +
+      "Nombre: " + n + "\nDocumento: " + d + "\n" + (s.length > 1 ? "Servicios que elijo:\n- " + s.join("\n- ") : "Servicio que elijo: " + s[0]) +
+      "\nRecibir consejos y novedades: " + ($("c3").checked ? "Sí, autorizo" : "No") + "\nFecha: " + f + " (hora de Colombia)";
     $("texto").textContent = t;
     if (WHATSAPP) $("wa").href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(t); else $("wa").hidden = true;
-    $("mail").href = "mailto:" + CORREO + "?subject=" + encodeURIComponent("Acepto los términos del servicio v" + VERSION) + "&body=" + encodeURIComponent(t);
+    $("mail").href = "mailto:" + CORREO + "?subject=" + encodeURIComponent("Acepto los términos del servicio - " + n) + "&body=" + encodeURIComponent(t);
     $("copiar").onclick = function () { navigator.clipboard.writeText(t).then(function () { $("copiar").textContent = "Mensaje copiado"; }); };
-    $("f").hidden = true; $("listo").hidden = false; window.scrollTo(0, 0);
+    $("f").hidden = true; $("listo").hidden = false; $("r3").className = "hecho"; window.scrollTo(0, 0);
   });
+  $("editar").addEventListener("click", function () { $("listo").hidden = true; $("f").hidden = false; $("r3").className = ""; });
 </script>
 </body>
 </html>
