@@ -315,8 +315,9 @@
     document.querySelectorAll("#publico button").forEach(function (b) {
       b.setAttribute("aria-pressed", b.dataset.publico === publicoActual ? "true" : "false");
     });
+    document.getElementById("sit").hidden = publicoActual === "negocio";
     document.querySelectorAll("#sit button").forEach(function (b) {
-      b.hidden = publicoActual === "negocio" ? b.dataset.sit !== "todo" && b.dataset.sit !== "negocio" : b.dataset.sit === "negocio";
+      b.hidden = b.dataset.sit === "negocio";
       b.setAttribute("aria-pressed", b.dataset.sit === situacionActual ? "true" : "false");
     });
     cartas.forEach(function (c) {
