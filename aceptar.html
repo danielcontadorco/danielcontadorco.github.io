@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aceptar los términos | Daniel Contador</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="logo.png">
+<meta name="theme-color" content="#104B35">
+<style>
+  :root { --verde:#104B35; --tinta:#1B2620; --gris:#586860; --fondo:#F4F7F5; --linea:#DCE5E0; --acento:#F2C14E; --suave:#E7F0EB; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; color:var(--tinta); background:var(--fondo); line-height:1.55; }
+  .barra { background:var(--verde); color:#fff; } .barra div { max-width:560px; margin:0 auto; padding:16px; }
+  .barra a { color:#fff; text-decoration:none; font-weight:800; display:flex; align-items:center; gap:10px; } .barra img { width:38px; height:38px; border-radius:50%; border:2px solid #fff; }
+  main { max-width:560px; margin:0 auto; padding:24px 16px 60px; }
+  h1 { color:var(--verde); font-size:1.7rem; letter-spacing:-.02em; margin:0 0 6px; }
+  .sub { color:var(--gris); margin:0 0 18px; }
+  form, .listo { background:#fff; border:1px solid var(--linea); border-radius:16px; padding:22px; }
+  label { display:block; font-weight:700; margin:0 0 4px; font-size:.95rem; }
+  input[type=text] { width:100%; padding:12px 14px; border:1.5px solid var(--linea); border-radius:10px; font:inherit; margin:0 0 14px; }
+  input[type=text]:focus { outline:none; border-color:var(--verde); }
+  .casilla { display:flex; gap:10px; align-items:flex-start; background:var(--suave); border-radius:10px; padding:12px 14px; margin:0 0 10px; font-weight:500; font-size:.95rem; }
+  .casilla input { width:20px; height:20px; margin-top:2px; flex:none; accent-color:var(--verde); }
+  a { color:var(--verde); }
+  .btn { display:block; width:100%; text-align:center; background:var(--verde); color:#fff; padding:15px; border-radius:12px; font-weight:800; font-size:1rem; border:0; cursor:pointer; text-decoration:none; margin-top:10px; font-family:inherit; }
+  .btn.dos { background:#fff; color:var(--verde); box-shadow:inset 0 0 0 2px var(--verde); }
+  .aviso { color:#A33; font-size:.9rem; min-height:1.3em; margin:6px 0 0; }
+  .nota { color:var(--gris); font-size:.85rem; margin:14px 0 0; }
+  pre { white-space:pre-wrap; background:var(--suave); border-radius:10px; padding:12px 14px; font:inherit; font-size:.92rem; margin:10px 0; }
+  [hidden] { display:none !important; }
+</style>
+</head>
+<body>
+<div class="barra"><div><a href="index.html"><img src="logo.png" alt="">Daniel Contador</a></div></div>
+<main>
+  <h1>Aceptar los términos</h1>
+  <p class="sub">Toma un minuto. Antes de aceptar, lee los <a href="legal.html#terminos" target="_blank">Términos del servicio (versión <span class="v"></span>)</a> y la <a href="legal.html#datos" target="_blank">Política de tratamiento de datos</a>.</p>
+
+  <form id="f" novalidate>
+    <label for="nombre">Nombre completo</label>
+    <input type="text" id="nombre" autocomplete="name" required>
+    <label for="doc">Número de documento (cédula o NIT)</label>
+    <input type="text" id="doc" inputmode="numeric" required>
+    <label for="servicio">Servicio que contratas</label>
+    <input type="text" id="servicio" placeholder="Ej.: Quincena en orden" required>
+    <label class="casilla"><input type="checkbox" id="c1"><span>He leído y acepto los Términos del servicio de Daniel Contador, versión <span class="v"></span>.</span></label>
+    <label class="casilla"><input type="checkbox" id="c2"><span>Autorizo a Daniel Mauricio Delgado Burbano a tratar mis datos personales para prestarme el servicio, según su Política de tratamiento de datos.</span></label>
+    <p class="aviso" id="aviso"></p>
+    <button class="btn" type="submit">Acepto</button>
+  </form>
+
+  <div class="listo" id="listo" hidden>
+    <b>Último paso: envía el mensaje.</b>
+    <p style="margin:6px 0 0">Tu aceptación queda registrada cuando me llega este mensaje desde tu número o tu correo:</p>
+    <pre id="texto"></pre>
+    <a class="btn" id="wa" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+    <a class="btn dos" id="mail">Enviar por correo</a>
+    <button class="btn dos" id="copiar" type="button">Copiar el mensaje</button>
+    <p class="nota">Se abre tu aplicación con el mensaje ya escrito; solo pulsa enviar. Esta página no guarda tus datos.</p>
+  </div>
+  <p class="nota">Este mensaje, enviado por ti, tiene la misma validez que una firma en papel (Ley 527 de 1999).</p>
+</main>
+<script>
+  // Mismo número que en index.html (57 + número, sin espacios). Vacío = solo se ofrece correo.
+  var WHATSAPP = "";
+  var CORREO = "danielcontadorco@gmail.com";
+  var VERSION = "1.1";
+  document.querySelectorAll(".v").forEach(function (e) { e.textContent = VERSION; });
+  var $ = function (id) { return document.getElementById(id); };
+  $("f").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var n = $("nombre").value.trim(), d = $("doc").value.trim(), s = $("servicio").value.trim();
+    if (n.split(/\s+/).length < 2) { $("aviso").textContent = "Escribe tu nombre completo (nombre y apellido)."; return; }
+    if (d.replace(/\D/g, "").length < 5) { $("aviso").textContent = "Escribe tu número de documento."; return; }
+    if (!s) { $("aviso").textContent = "Escribe el servicio que contratas."; return; }
+    if (!$("c1").checked || !$("c2").checked) { $("aviso").textContent = "Marca las dos casillas para aceptar."; return; }
+    var f = new Date().toLocaleString("es-CO", { timeZone: "America/Bogota", dateStyle: "long", timeStyle: "short" });
+    var t = "ACEPTO los Términos del servicio de Daniel Contador, versión " + VERSION + ", y AUTORIZO el tratamiento de mis datos personales según su Política de tratamiento de datos.\n" +
+      "Nombre: " + n + "\nDocumento: " + d + "\nServicio: " + s + "\nFecha: " + f + " (hora de Colombia)";
+    $("texto").textContent = t;
+    if (WHATSAPP) $("wa").href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(t); else $("wa").hidden = true;
+    $("mail").href = "mailto:" + CORREO + "?subject=" + encodeURIComponent("Acepto los términos del servicio v" + VERSION) + "&body=" + encodeURIComponent(t);
+    $("copiar").onclick = function () { navigator.clipboard.writeText(t).then(function () { $("copiar").textContent = "Mensaje copiado"; }); };
+    $("f").hidden = true; $("listo").hidden = false; window.scrollTo(0, 0);
+  });
+</script>
+</body>
+</html>
