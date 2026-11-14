@@ -85,11 +85,9 @@
   // Mismos códigos y nombres que las tarjetas de index.html (data-id y data-nombre).
   var SERVICIOS = [
     ["q", "Quincena en orden", "$80.000, pago único"],
-    ["aq", "Acompañamiento mensual de Quincena en orden", "$90.000 al mes"],
     ["d", "Plan Salir de deudas", "$150.000, pago único"],
-    ["ad", "Acompañamiento mensual de Salir de deudas", "$90.000 al mes"],
+    ["acomp", "Acompañamiento mensual", "$90.000 al mes. Va con Quincena en orden o el Plan Salir de deudas; si tienes los dos, es uno solo"],
     ["r", "Declaración de renta", "Desde $150.000"],
-    ["a", "Acompañamiento mensual", "$90.000 al mes"],
     ["b", "Cuentas claras cada mes (negocio)", "Desde $280.000 al mes"],
     ["n", "Negocio con IVA o Régimen Simple", "Desde $480.000 al mes"],
     ["f", "Facturación electrónica", "$180.000, pago único"],
@@ -101,7 +99,9 @@
   var pedidos = (new URLSearchParams(location.search).get("s") || "").split(",");
   SERVICIOS.forEach(function (s) {
     var l = document.createElement("label"); l.className = "op";
-    var c = document.createElement("input"); c.type = "checkbox"; c.value = s[1]; c.checked = pedidos.indexOf(s[0]) >= 0;
+    var c = document.createElement("input"); c.type = "checkbox"; c.value = s[1]; c.id = "s-" + s[0];
+    // El acompañamiento llega desde index.html como aq, ad o aqd (uno solo para los dos planes)
+    c.checked = s[0] === "acomp" ? ["aq", "ad", "aqd"].some(function (a) { return pedidos.indexOf(a) >= 0; }) : pedidos.indexOf(s[0]) >= 0;
     var t = document.createElement("span"); t.textContent = s[1];
     var p = document.createElement("small"); p.textContent = s[2]; t.appendChild(p);
     l.appendChild(c); l.appendChild(t); $("lista").appendChild(l);
@@ -110,7 +110,10 @@
     e.preventDefault();
     var n = $("nombre").value.trim(), d = $("doc").value.trim();
     var s = [].slice.call(document.querySelectorAll("#lista input:checked")).map(function (c) { return c.value; });
-    var falta = !s.length ? "Elige al menos un servicio." : n.split(/\s+/).length < 2 ? "Escribe tu nombre completo (nombre y apellido)." : d.replace(/\D/g, "").length < 5 ? "Escribe tu número de documento." : (!$("c1").checked || !$("c2").checked) ? "Marca las dos primeras casillas para aceptar." : "";
+    // Un solo acompañamiento: se nombra según los planes que eligió
+    var conQ = $("s-q").checked, conD = $("s-d").checked, iA = s.indexOf("Acompañamiento mensual"), sinPlan = iA >= 0 && !conQ && !conD;
+    if (iA >= 0 && !sinPlan) s[iA] = "Acompañamiento mensual de " + (conQ && conD ? "Quincena en orden y Salir de deudas" : conQ ? "Quincena en orden" : "Salir de deudas");
+    var falta = !s.length ? "Elige al menos un servicio." : sinPlan ? "El acompañamiento mensual va con Quincena en orden o con el Plan Salir de deudas: marca al menos uno de los dos." : n.split(/\s+/).length < 2 ? "Escribe tu nombre completo (nombre y apellido)." : d.replace(/\D/g, "").length < 5 ? "Escribe tu número de documento." : (!$("c1").checked || !$("c2").checked) ? "Marca las dos primeras casillas para aceptar." : "";
     $("aviso").textContent = falta; if (falta) return;
     var f = new Date().toLocaleString("es-CO", { timeZone: "America/Bogota", dateStyle: "long", timeStyle: "short" });
     var t = "ACEPTO los Términos del servicio de Daniel Contador, vigentes desde el " + VIGENCIA + ", y AUTORIZO el tratamiento de mis datos personales según su Política de tratamiento de datos.\n" +
