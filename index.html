@@ -127,11 +127,33 @@
   .bandeja .btn { padding:13px 22px; white-space:nowrap; }
   body.con-bandeja .flota { bottom:96px; }
 
+  /* Calculadora destacada (enlace a calculadora.html) */
+  nav a.calc-nav { background:var(--acento); color:var(--hondo); padding:7px 14px; border-radius:99px; opacity:1; font-weight:800; }
+  nav a.calc-nav:hover { text-decoration:none; filter:brightness(1.05); }
+  .promo { margin-top:-34px; position:relative; z-index:2; display:grid; grid-template-columns:1.2fr .8fr; gap:24px; align-items:center; background:var(--crema); border:2px solid var(--acento); border-radius:22px; padding:26px; box-shadow:0 18px 44px rgba(10,51,36,.16); text-decoration:none; color:var(--tinta); }
+  .promo .etq { display:inline-block; background:var(--verde); color:#fff; font-size:.75rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; padding:4px 12px; border-radius:99px; margin-bottom:8px; }
+  .promo h2 { margin:0 0 6px; }
+  .promo p { margin:0 0 16px; color:var(--gris); max-width:52ch; }
+  .promo .btn { background:var(--verde); color:#fff; }
+  .muestra-calc { background:#fff; border-radius:16px; padding:16px; font-size:.88rem; }
+  .muestra-calc small { color:var(--gris); font-weight:600; }
+  .muestra-calc b { display:block; color:var(--verde); font-size:1.5rem; letter-spacing:-.02em; margin-bottom:8px; }
+  .muestra-calc .b { display:flex; height:14px; border-radius:99px; overflow:hidden; margin-bottom:10px; background:var(--suave); } .muestra-calc .b span { display:block; height:100%; }
+  .muestra-calc ul { list-style:none; margin:0; padding:0; color:var(--gris); } .muestra-calc li { display:flex; justify-content:space-between; padding:2px 0; }
+  /* Preguntas frecuentes: la sección entera se despliega */
+  details.faq-todo { background:none; border:0; padding:0; margin:0; }
+  details.faq-todo > summary { list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; background:var(--tarjeta); border:2px solid var(--linea); border-radius:18px; padding:18px 22px; }
+  details.faq-todo > summary::-webkit-details-marker { display:none; }
+  details.faq-todo > summary h2 { margin:0; } details.faq-todo > summary small { display:block; color:var(--gris); font-weight:500; font-size:.95rem; margin-top:4px; }
+  details.faq-todo > summary::after { content:"+"; flex:none; width:40px; height:40px; border-radius:50%; background:var(--verde); color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.5rem; font-weight:700; }
+  details.faq-todo[open] > summary::after { content:"−"; }
+  details.faq-todo[open] > summary { margin-bottom:12px; }
   @media (max-width:820px) {
     .hero-in { grid-template-columns:1fr; padding:28px 0 52px; }
     nav { gap:14px; font-size:.88rem; } nav .larga { display:none; }
     .sobre { grid-template-columns:1fr; text-align:center; } .sobre img { margin:0 auto; }
     .bandeja .duda { display:none; }
+    .promo { grid-template-columns:1fr; margin-top:-30px; padding:22px 18px; } .muestra-calc { display:none; }
   }
   @media (max-width:430px) { .logo span { display:none; } .bandeja .btn { padding:12px 16px; } body.con-bandeja .flota { bottom:104px; } }
   @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } * { transition:none !important; } }
@@ -140,7 +162,7 @@
 <body id="arriba">
 <div class="top" id="top"><div class="wrap">
   <a class="logo" href="#arriba"><img src="logo.png" alt="Daniel Contador"><span>Daniel Contador</span></a>
-  <nav aria-label="Secciones"><a href="#servicios">Servicios</a><a class="larga" href="#como">Cómo funciona</a><a class="larga" href="#preguntas">Preguntas</a><a href="calculadora.html">Calculadora</a><a href="legal.html">Legal</a></nav>
+  <nav aria-label="Secciones"><a href="#servicios">Servicios</a><a class="larga" href="#como">Cómo funciona</a><a class="larga" href="#preguntas">Preguntas</a><a class="calc-nav" href="calculadora.html">Calculadora gratis</a><a href="legal.html">Legal</a></nav>
 </div></div>
 
 <div class="hero"><div class="wrap">
@@ -151,7 +173,7 @@
       <p class="lead">Te ayudo a ordenar tu plata, salir de deudas y estar al día con la DIAN. Te lo explico sin palabras raras y te dejo un plan escrito que sí puedes cumplir.</p>
       <div class="fila-btn">
         <a class="btn" href="#servicios">Armar mi plan</a>
-        <a class="btn linea" data-wa="PLANTILLA" href="#">Quiero la plantilla gratis</a>
+        <a class="btn linea" href="calculadora.html">Haz la cuenta de tu quincena gratis</a>
       </div>
       <div class="prueba"><span>Precio por escrito antes de empezar</span><span>Todo por WhatsApp</span><span>Tu información es confidencial</span></div>
     </div>
@@ -170,6 +192,20 @@
 </div></div>
 
 <div class="wrap">
+  <a class="promo" href="calculadora.html">
+    <div>
+      <span class="etq">Gratis · 1 minuto</span>
+      <h2>¿A dónde se va tu quincena?</h2>
+      <p>Escribe lo que te entra y lo que gastas. Te muestro en qué se te va la plata, cuánto te queda y 3 cosas que podrías mejorar. No tienes que registrarte y no se guarda nada.</p>
+      <span class="btn">Hacer la cuenta gratis →</span>
+    </div>
+    <div class="muestra-calc" aria-hidden="true">
+      <small>Ejemplo de resultado</small>
+      <b>Te quedan $45.000</b>
+      <div class="b"><span style="width:55%;background:#104B35"></span><span style="width:20%;background:#A33A2B"></span><span style="width:15%;background:#F2C14E"></span><span style="width:6%;background:#5FA882"></span></div>
+      <ul><li><span>Lo necesario</span><span>55 %</span></li><li><span>Deudas</span><span>20 %</span></li><li><span>Gustos</span><span>15 %</span></li><li><span>Ahorro</span><span>6 %</span></li></ul>
+    </div>
+  </a>
   <section id="servicios">
     <h2>Arma tu plan</h2>
     <p class="sub">Cuéntame qué te está pasando y te muestro lo que te sirve. Puedes elegir uno o varios servicios; al final los envías todos juntos en un solo mensaje.</p>
@@ -188,7 +224,7 @@
 
     <div class="grid" id="grid">
       <div class="card" data-publico="persona" data-id="q" data-nombre="Quincena en orden" data-sit="plata deudas"><span class="grupo oro">El más pedido</span><h3>Quincena en orden</h3><p class="para">Para quien gana, pero no sabe a dónde se le va.</p><p class="precio">$80.000 <small>pago único</small></p>
-        <ul><li>Reviso tus extractos de los últimos dos meses</li><li>Te muestro, con cifras, en qué se te va la plata</li><li>Presupuesto por quincena hecho con tus números</li><li>Plan escrito para los próximos 30 días, con hasta 2 ajustes si algo no te cuadra</li><li>Videollamada de 30 minutos para explicártelo</li></ul>
+        <ul><li>Reviso tus extractos de los últimos dos meses, movimiento por movimiento</li><li>Encuentro lo que no ves de memoria: cuotas de manejo, seguros, suscripciones olvidadas y gastos pequeños que se suman</li><li>Presupuesto por quincena con tus números reales, ajustado a tus fechas de pago</li><li>Plan escrito para los próximos 30 días, con hasta 2 ajustes si algo no te cuadra</li><li>Videollamada de 30 minutos para explicártelo</li></ul>
         <button class="btn elegir" type="button">Agregar a mi plan</button></div>
       <div class="card" data-publico="persona" data-id="d" data-nombre="Plan Salir de deudas" data-sit="deudas"><span class="grupo">Para ti</span><h3>Plan Salir de deudas</h3><p class="para">Para quien tiene varias deudas y no ve el final.</p><p class="precio">$150.000 <small>pago único</small></p>
         <ul><li>Lista completa de lo que debes: saldo, cuota e interés de cada deuda</li><li>En qué orden pagarlas para que pagues menos intereses</li><li>Calendario mes a mes con la fecha estimada en que terminas</li><li>Guía para pedirle al banco mejores condiciones</li><li>Videollamada de 30 minutos para revisar todo el plan</li></ul>
@@ -211,6 +247,9 @@
       <div class="card" data-publico="persona negocio" data-id="t" data-nombre="Trámites y decisiones" data-sit="negocio renta"><span class="grupo">Para ti o tu negocio</span><h3>Trámites y decisiones</h3><p class="para">Para resolver algo puntual.</p><p class="precio"><small>Desde</small> $50.000</p>
         <ul><li>RUT: sacarlo por primera vez o actualizarlo</li><li>¿Te conviene el Régimen Simple? Te hago la cuenta con tus cifras</li><li>Poner al día las cuentas de meses atrasados</li><li>Separar la plata del negocio de la plata de la casa</li></ul>
         <button class="btn elegir" type="button">Agregar a mi plan</button></div>
+      <div class="card" data-publico="persona negocio" data-id="g" data-nombre="Diagnóstico de 30 minutos" data-sit="plata deudas renta negocio"><span class="grupo oro">Si no sabes por dónde empezar</span><h3>Diagnóstico de 30 minutos</h3><p class="para">Para revisar tu caso conmigo antes de decidir.</p><p class="precio">$50.000 <small>se descuenta si contratas</small></p>
+        <ul><li>Videollamada de 30 minutos sobre tu caso</li><li>Si eres persona: a dónde se va tu plata y qué hacer con tus deudas</li><li>Si tienes negocio: si estás al día con la DIAN y qué te aplica este año</li><li>3 hallazgos concretos y una propuesta por escrito</li><li>Si contratas un servicio en los 30 días siguientes, te descuento los $50.000</li></ul>
+        <button class="btn elegir" type="button">Agregar a mi plan</button></div>
     </div>
     <p class="sub" style="margin-top:18px;font-size:.9rem">Los precios están en pesos colombianos y son el valor total de mi servicio. Los que dicen "desde" dependen de tu caso: te confirmo el valor exacto por escrito antes de que pagues. No incluyen los impuestos o tarifas que tú pagas directamente a entidades como la DIAN.</p>
   </section>
@@ -219,7 +258,7 @@
     <h2>Cómo funciona</h2>
     <p class="sub">Sin filas, sin ir a ninguna oficina y sin pagar nada hasta tener el precio por escrito.</p>
     <div class="pasos">
-      <div class="paso"><b>Me cuentas tu caso</b><p>Me escribes por WhatsApp y te digo qué servicio te sirve. Si quieres revisarlo a fondo, hacemos un diagnóstico de 25 minutos por videollamada por $40.000, que se te descuentan si contratas.</p></div>
+      <div class="paso"><b>Me cuentas tu caso</b><p>Me escribes por WhatsApp y te digo qué servicio te sirve. Si quieres revisarlo a fondo, hacemos un diagnóstico de 30 minutos por videollamada por $50.000, que se te descuentan si contratas.</p></div>
       <div class="paso"><b>Armas tu plan aquí</b><p>Eliges uno o varios servicios en esta página, aceptas los términos en un minuto y me llega un solo mensaje con todo.</p></div>
       <div class="paso"><b>Te confirmo y empezamos</b><p>Te escribo el precio y la fecha de entrega. Pagas, me envías tus documentos por WhatsApp o Drive y empiezo.</p></div>
       <div class="paso"><b>Recibes tu resultado explicado</b><p>Un documento claro con lo que encontré, lo que debes hacer y para cuándo. Resolvemos tus dudas juntos.</p></div>
@@ -237,9 +276,8 @@
   </section>
 
   <section id="preguntas">
-    <h2>Preguntas frecuentes</h2>
-    <p class="sub">Lo que más me preguntan antes de empezar.</p>
-    <details><summary>¿Cuánto cuesta?</summary><p>El precio está en cada servicio. Si tu caso es distinto, te confirmo el valor exacto por escrito antes de empezar, sin sorpresas después. El diagnóstico de 25 minutos por videollamada vale $40.000 y se te descuenta del servicio que contrates.</p></details>
+    <details class="faq-todo"><summary><div><h2>Preguntas frecuentes</h2><small>Lo que más me preguntan antes de empezar. Toca para verlas.</small></div></summary>
+    <details><summary>¿Cuánto cuesta?</summary><p>El precio está en cada servicio. Si tu caso es distinto, te confirmo el valor exacto por escrito antes de empezar, sin sorpresas después. El diagnóstico de 30 minutos por videollamada vale $50.000 y se te descuenta del servicio que contrates.</p></details>
     <details><summary>¿Puedo contratar varios servicios a la vez?</summary><p>Sí. En "Arma tu plan" tocas "Agregar a mi plan" en cada servicio que quieras y luego "Continuar". Aceptas los términos una sola vez y me llega un solo mensaje con todo lo que elegiste.</p></details>
     <details><summary>¿Cómo se paga?</summary><p>Por transferencia (Nequi o Bre-B). Si el servicio cuesta $150.000 o menos, lo pagas completo al empezar. Si cuesta más, pagas la mitad al empezar y la otra mitad cuando tu trabajo esté listo. Los planes mensuales se pagan al inicio de cada mes y no tienen permanencia: cancelas cuando quieras. Los impuestos los pagas tú directamente a la DIAN, nunca a mí.</p></details>
     <details><summary>¿Tengo que estar en Cali?</summary><p>No. Todo es virtual: WhatsApp, videollamada y documentos por Drive.</p></details>
@@ -248,6 +286,7 @@
     <details><summary>¿Y si me arrepiento después de pagar?</summary><p>Tienes 5 días hábiles para arrepentirte, siempre que todavía no haya empezado tu trabajo, y te devuelvo todo lo pagado en máximo 15 días calendario. Los detalles están en <a href="legal.html#devoluciones">devoluciones y reembolsos</a>.</p></details>
     <details><summary>¿Dónde presento una queja o un reclamo?</summary><p>En la sección <a href="legal.html#reclamos">Peticiones, quejas y reclamos</a>. Te da un número de radicado y te respondo en máximo 15 días hábiles.</p></details>
     <details><summary>¿Y si no sé qué servicio necesito?</summary><p>Haz la cuenta en la <a href="calculadora.html">calculadora gratis de tu quincena</a> y envíame el resultado, o escríbeme "PLANTILLA" y te envío gratis mi presupuesto quincenal. Con eso te digo qué te sirve.</p></details>
+    </details>
   </section>
 
   <div class="cta">
@@ -257,7 +296,7 @@
   </div>
 
   <footer>
-    <div class="redes"><a href="https://www.tiktok.com/@danielcontadorco" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a><a href="https://www.instagram.com/danielcontadorco" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></a><a href="https://www.facebook.com/danielcontadorco" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></a><a href="https://www.youtube.com/@danielcontadorco" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a><b>@danielcontadorco</b></div>
+    <div class="redes"><a href="https://www.tiktok.com/@danielcontadorco" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a><a href="https://www.instagram.com/danielcontadorco" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></a><a href="https://www.facebook.com/profile.php?id=61594976777118" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></a><a href="https://www.youtube.com/@danielcontadorco" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a><b>@danielcontadorco</b></div>
     <p class="enl"><a href="legal.html#quien">Quién responde</a><a href="legal.html#terminos">Términos del servicio</a><a href="legal.html#datos">Datos personales</a><a href="legal.html#cookies">Cookies</a><a href="legal.html#devoluciones">Devoluciones y reembolsos</a><a href="legal.html#reclamos">Peticiones, quejas y reclamos</a><a href="legal.html#autor">Derechos de autor</a><a href="https://www.sic.gov.co" target="_blank" rel="noopener">Superintendencia de Industria y Comercio</a></p>
     <p>Daniel Mauricio Delgado Burbano · Daniel Contador · Cali, Valle del Cauca, Colombia · <span id="telPie"></span>danielcontadorco@gmail.com. La información de este sitio es general y la orientación en finanzas personales no es recomendación de inversión.</p>
     <p>© 2026 Daniel Mauricio Delgado Burbano. Todos los derechos reservados. Los textos, el diseño y los videos de Daniel Contador están protegidos por derecho de autor (Ley 23 de 1982); no se pueden copiar ni reutilizar sin permiso escrito.</p>
