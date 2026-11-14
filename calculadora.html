@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadora de tu quincena | Daniel Contador</title>
+<meta name="description" content="Calculadora gratis: escribe lo que te entra y lo que pagas en la quincena y mira a dónde se va tu plata, cuánto te queda y 3 cosas para mejorar. No se guarda nada.">
+<link rel="icon" type="image/png" href="logo.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="¿A dónde se va tu quincena? Calculadora gratis">
+<meta property="og:description" content="En un minuto ves cuánto se te va en cada cosa, cuánto te queda y qué podrías mejorar. Gratis y sin guardar tus datos.">
+<meta property="og:image" content="logo.png">
+<meta name="theme-color" content="#104B35">
+<style>
+  :root { --verde:#104B35; --claro:#1C6B4D; --tinta:#1B2620; --gris:#586860; --fondo:#F4F7F5; --linea:#DCE5E0; --acento:#F2C14E; --suave:#E7F0EB; --crema:#F3EEDC; --rojo:#A33A2B; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; color:var(--tinta); background:var(--fondo); line-height:1.55; }
+  a { color:var(--verde); }
+  .barra { background:var(--verde); color:#fff; position:sticky; top:0; z-index:5; } .barra div { max-width:680px; margin:0 auto; padding:12px 16px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+  .barra a { color:#fff; text-decoration:none; font-weight:800; display:flex; align-items:center; gap:10px; } .barra img { width:38px; height:38px; border-radius:50%; border:2px solid #fff; }
+  .barra a.volver { font-weight:600; font-size:.9rem; opacity:.9; }
+  main { max-width:680px; margin:0 auto; padding:22px 16px 40px; }
+  .pill { display:inline-block; background:var(--crema); color:var(--verde); font-weight:800; font-size:.8rem; padding:4px 12px; border-radius:99px; margin:0 0 10px; }
+  h1 { color:var(--verde); font-size:1.8rem; letter-spacing:-.02em; line-height:1.2; margin:0 0 8px; }
+  h2 { color:var(--verde); font-size:1.1rem; margin:0 0 4px; }
+  .sub { color:var(--gris); margin:0 0 18px; }
+  .caja { background:#fff; border:1px solid var(--linea); border-radius:16px; padding:20px; margin:0 0 14px; }
+  .caja > p { color:var(--gris); font-size:.9rem; margin:0 0 12px; }
+  .periodo { display:flex; gap:8px; margin:0 0 4px; }
+  .periodo button { flex:1; padding:11px; border-radius:10px; border:1.5px solid var(--linea); background:#fff; font:inherit; font-weight:700; color:var(--tinta); cursor:pointer; }
+  .periodo button[aria-pressed=true] { background:var(--verde); border-color:var(--verde); color:#fff; }
+  .campo { display:grid; grid-template-columns:1fr 150px; gap:10px; align-items:center; padding:8px 0; border-top:1px solid var(--suave); }
+  .campo:first-of-type { border-top:0; }
+  .campo label { font-weight:600; font-size:.95rem; } .campo label small { display:block; font-weight:500; color:var(--gris); font-size:.8rem; }
+  .peso { position:relative; } .peso:before { content:"$"; position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--gris); font-weight:700; }
+  .peso input { width:100%; padding:11px 12px 11px 24px; border:1.5px solid var(--linea); border-radius:10px; font:inherit; font-weight:700; text-align:right; background:#fff; color:var(--tinta); }
+  .peso input:focus { outline:none; border-color:var(--verde); }
+  .grande .peso input { font-size:1.15rem; border-color:var(--claro); }
+  .btn { display:block; width:100%; text-align:center; background:var(--verde); color:#fff; padding:15px; border-radius:12px; font-weight:800; font-size:1rem; border:0; cursor:pointer; text-decoration:none; margin-top:10px; font-family:inherit; }
+  .btn.dos { background:#fff; color:var(--verde); box-shadow:inset 0 0 0 2px var(--verde); }
+  .aviso { color:var(--rojo); font-size:.9rem; min-height:1.3em; margin:8px 0 0; font-weight:600; }
+  #res { scroll-margin-top:80px; }
+  .titular { background:var(--verde); color:#fff; border-radius:16px; padding:20px; margin:0 0 14px; }
+  .titular small { opacity:.85; font-weight:600; } .titular b { display:block; font-size:2rem; letter-spacing:-.02em; line-height:1.15; margin:2px 0 4px; }
+  .titular.mal { background:var(--rojo); }
+  .titular p { margin:0; opacity:.92; font-size:.92rem; }
+  .barraRes { display:flex; height:22px; border-radius:99px; overflow:hidden; background:var(--suave); margin:4px 0 14px; }
+  .barraRes span { display:block; height:100%; }
+  .ley { display:grid; grid-template-columns:14px 1fr auto auto; gap:6px 10px; align-items:center; font-size:.93rem; }
+  .ley i { width:14px; height:14px; border-radius:4px; display:block; } .ley b { text-align:right; } .ley em { font-style:normal; color:var(--gris); text-align:right; min-width:44px; }
+  table { width:100%; border-collapse:collapse; font-size:.92rem; margin:6px 0 0; }
+  th, td { padding:8px 6px; border-bottom:1px solid var(--suave); text-align:right; } th:first-child, td:first-child { text-align:left; }
+  th { color:var(--gris); font-weight:600; font-size:.82rem; }
+  td.ok { color:var(--claro); font-weight:800; } td.ojo { color:var(--rojo); font-weight:800; }
+  ol.hallazgos { margin:0; padding:0; list-style:none; counter-reset:h; }
+  ol.hallazgos li { counter-increment:h; position:relative; padding:12px 0 12px 42px; border-top:1px solid var(--suave); }
+  ol.hallazgos li:first-child { border-top:0; }
+  ol.hallazgos li:before { content:counter(h); position:absolute; left:0; top:12px; width:30px; height:30px; border-radius:50%; background:var(--acento); color:var(--tinta); font-weight:800; display:flex; align-items:center; justify-content:center; }
+  ol.hallazgos b { display:block; }
+  .cierre { background:var(--crema); border-radius:16px; padding:20px; margin:0 0 14px; }
+  .cierre p { margin:0 0 6px; }
+  .nota { color:var(--gris); font-size:.84rem; margin:12px 0 0; }
+  footer { max-width:680px; margin:0 auto; padding:10px 16px 40px; color:var(--gris); font-size:.82rem; } footer p { margin:0 0 8px; }
+  .enl a { display:inline-block; margin:0 14px 4px 0; font-weight:600; }
+  [hidden] { display:none !important; }
+  @media (max-width:430px) { .campo { grid-template-columns:1fr 128px; } h1 { font-size:1.55rem; } .titular b { font-size:1.7rem; } }
+</style>
+</head>
+<body>
+<div class="barra"><div><a href="index.html"><img src="logo.png" alt="">Daniel Contador</a><a class="volver" href="index.html">← Volver al inicio</a></div></div>
+<main>
+  <span class="pill">Gratis · No se guarda nada</span>
+  <h1>¿A dónde se va tu quincena?</h1>
+  <p class="sub">Escribe lo que te entra y lo que pagas. En un minuto ves cuánto se te va en cada cosa, cuánto te queda y tres cosas que podrías mejorar. Si no sabes un valor exacto, pon uno aproximado.</p>
+
+  <form id="f" novalidate>
+    <div class="caja">
+      <h2>¿Vas a escribir valores de la quincena o del mes?</h2>
+      <p>Usa el mismo periodo para todo.</p>
+      <div class="periodo" id="periodo"><button type="button" data-p="q" aria-pressed="true">De la quincena</button><button type="button" data-p="m" aria-pressed="false">Del mes</button></div>
+    </div>
+
+    <div class="caja">
+      <h2>Lo que te entra</h2>
+      <div class="campo grande"><label for="ing">Sueldo, ventas y extras<small>Lo que de verdad te llega, ya con descuentos</small></label><div class="peso"><input id="ing" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+    </div>
+
+    <div class="caja">
+      <h2>Lo necesario</h2>
+      <p>Lo que pagas sí o sí para vivir.</p>
+      <div class="campo"><label for="viv">Arriendo o cuota de la vivienda</label><div class="peso"><input id="viv" data-g="nec" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="serv">Servicios, internet y celular</label><div class="peso"><input id="serv" data-g="nec" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="merc">Mercado y aseo</label><div class="peso"><input id="merc" data-g="nec" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="trans">Transporte<small>MIO, bus, gasolina, moto</small></label><div class="peso"><input id="trans" data-g="nec" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="fam">Lo que le das a la familia</label><div class="peso"><input id="fam" data-g="nec" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="otf">Estudio, salud y otros fijos</label><div class="peso"><input id="otf" data-g="nec" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+    </div>
+
+    <div class="caja">
+      <h2>Deudas</h2>
+      <div class="campo"><label for="deu">Cuotas de tarjetas, créditos y préstamos<small>Incluye los préstamos con conocidos o "gota a gota"</small></label><div class="peso"><input id="deu" data-g="deu" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+    </div>
+
+    <div class="caja">
+      <h2>Gustos</h2>
+      <p>No están mal. Solo hay que saber cuánto suman.</p>
+      <div class="campo"><label for="dom">Domicilios, salidas y antojos</label><div class="peso"><input id="dom" data-g="gus" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="sus">Suscripciones<small>Plataformas de series y música, apps, gimnasio</small></label><div class="peso"><input id="sus" data-g="gus" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <div class="campo"><label for="ropa">Ropa, regalos y otros gustos</label><div class="peso"><input id="ropa" data-g="gus" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+    </div>
+
+    <div class="caja">
+      <h2>Ahorro</h2>
+      <div class="campo"><label for="aho">Lo que separas para ahorrar</label><div class="peso"><input id="aho" data-g="aho" inputmode="numeric" autocomplete="off" placeholder="0"></div></div>
+      <p class="aviso" id="aviso" role="alert"></p>
+      <button class="btn" type="submit">Ver mi resultado</button>
+    </div>
+  </form>
+
+  <div id="res" hidden>
+    <div class="titular" id="tit"><small id="tSmall"></small><b id="tNum"></b><p id="tTxt"></p></div>
+
+    <div class="caja">
+      <h2>A dónde se va tu plata</h2>
+      <div class="barraRes" id="barraRes" aria-hidden="true"></div>
+      <div class="ley" id="ley"></div>
+    </div>
+
+    <div class="caja">
+      <h2>Cómo te va frente a una guía sencilla</h2>
+      <p>Muchas personas usan la guía 50/30/20: máximo la mitad para lo necesario (cuotas incluidas), hasta un 30 % para gustos y al menos un 20 % para ahorrar o pagar deudas más rápido. Es una referencia, no una regla: cada caso es distinto.</p>
+      <table><thead><tr><th>Grupo</th><th>Tú</th><th>Guía</th></tr></thead><tbody id="guia"></tbody></table>
+    </div>
+
+    <div class="caja">
+      <h2>3 cosas que noté</h2>
+      <ol class="hallazgos" id="hallazgos"></ol>
+    </div>
+
+    <div class="cierre">
+      <h2>¿Quieres saber qué hacer con esto?</h2>
+      <p>Envíame tu resultado y te digo cuál de mis servicios te sirve. Si quieres que lo revisemos a fondo, hacemos un <b>diagnóstico de 25 minutos por videollamada por $40.000</b>, que se te descuentan si después contratas cualquier servicio.</p>
+      <a class="btn" id="wa" target="_blank" rel="noopener">Enviarle mi resultado a Daniel</a>
+      <a class="btn dos" id="plantilla" target="_blank" rel="noopener">Quiero la plantilla gratis</a>
+      <button class="btn dos" id="copiar" type="button">Copiar mi resultado</button>
+      <a class="btn dos" href="index.html#servicios">Ver los servicios y precios</a>
+    </div>
+    <button class="btn dos" id="editar" type="button">Cambiar mis valores</button>
+    <p class="nota">Resultado estimado con los valores que escribiste. Es orientación general sobre presupuesto, no una recomendación de inversión. Esta página no guarda nada ni usa cookies: todo se calcula en tu celular y se borra al cerrarla.</p>
+  </div>
+</main>
+<footer>
+  <p class="enl"><a href="legal.html#quien">Quién responde</a><a href="legal.html#terminos">Términos del servicio</a><a href="legal.html#datos">Datos personales</a><a href="legal.html#cookies">Cookies</a><a href="legal.html#reclamos">Peticiones, quejas y reclamos</a><a href="legal.html#autor">Derechos de autor</a><a href="https://www.sic.gov.co" target="_blank" rel="noopener">Superintendencia de Industria y Comercio</a></p>
+  <p>Daniel Mauricio Delgado Burbano · Daniel Contador · Cali, Colombia · danielcontadorco@gmail.com · @danielcontadorco</p>
+  <p>© 2026 Daniel Mauricio Delgado Burbano. Todos los derechos reservados. Los textos, el diseño y esta calculadora están protegidos por derecho de autor (Ley 23 de 1982); no se pueden copiar ni reutilizar sin permiso escrito.</p>
+</footer>
+<script>
+  // Mismo número que en index.html (57 + número, sin espacios). Vacío = los botones llevan a TikTok.
+  var WHATSAPP = "573168146876";
+  var RESPALDO = "https://www.tiktok.com/@danielcontadorco";
+  function wa(t) { return WHATSAPP ? "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(t) : RESPALDO; }
+  var $ = function (id) { return document.getElementById(id); };
+  var pesos = function (n) { return "$" + Math.round(n).toLocaleString("es-CO"); };
+  var pct = function (n) { return Math.round(n * 100) + " %"; };
+  var periodo = "q";
+  var GRUPOS = [
+    ["nec", "Lo necesario", "#104B35"],
+    ["deu", "Deudas", "#A33A2B"],
+    ["gus", "Gustos", "#F2C14E"],
+    ["aho", "Ahorro", "#5FA882"]
+  ];
+  var campos = [].slice.call(document.querySelectorAll(".peso input"));
+  function valor(el) { return Number((el.value || "").replace(/\D/g, "")) || 0; }
+  campos.forEach(function (el) {
+    el.addEventListener("input", function () {
+      var n = valor(el); el.value = n ? n.toLocaleString("es-CO") : "";
+    });
+  });
+  document.querySelectorAll("#periodo button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      periodo = b.getAttribute("data-p");
+      document.querySelectorAll("#periodo button").forEach(function (x) { x.setAttribute("aria-pressed", x === b); });
+    });
+  });
+
+  $("f").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var ing = valor($("ing"));
+    var g = { nec: 0, deu: 0, gus: 0, aho: 0 };
+    campos.forEach(function (el) { var k = el.getAttribute("data-g"); if (k) g[k] += valor(el); });
+    var gastos = g.nec + g.deu + g.gus + g.aho;
+    if (!ing) { $("aviso").textContent = "Escribe cuánto te entra para poder hacer la cuenta."; $("ing").focus(); return; }
+    if (!gastos) { $("aviso").textContent = "Escribe al menos un gasto."; return; }
+    $("aviso").textContent = "";
+
+    var libre = ing - gastos;
+    var nombreP = periodo === "q" ? "la quincena" : "el mes";
+    var alAnio = periodo === "q" ? 24 : 12;
+
+    // Titular
+    $("tit").className = "titular" + (libre < 0 ? " mal" : "");
+    $("tSmall").textContent = libre < 0 ? "Te faltan en " + nombreP : libre > 0 ? "Te quedan sin destino en " + nombreP : "Te queda en " + nombreP;
+    $("tNum").textContent = pesos(Math.abs(libre));
+    $("tTxt").textContent = "Te entran " + pesos(ing) + " y se te van " + pesos(gastos) + (g.aho ? ", contando " + pesos(g.aho) + " de ahorro." : ".");
+
+    // Barra y leyenda (sobre el ingreso, o sobre los gastos si superan el ingreso)
+    var base = Math.max(ing, gastos);
+    var partes = GRUPOS.map(function (x) { return [x[1], g[x[0]], x[2]]; });
+    if (libre > 0) partes.push(["Sin destino", libre, "#C9D6CF"]);
+    $("barraRes").innerHTML = ""; $("ley").innerHTML = "";
+    partes.forEach(function (p) {
+      if (!p[1]) return;
+      var s = document.createElement("span"); s.style.width = (p[1] / base * 100) + "%"; s.style.background = p[2]; $("barraRes").appendChild(s);
+      var i = document.createElement("i"); i.style.background = p[2];
+      var n = document.createElement("span"); n.textContent = p[0];
+      var v = document.createElement("b"); v.textContent = pesos(p[1]);
+      var c = document.createElement("em"); c.textContent = pct(p[1] / ing);
+      [i, n, v, c].forEach(function (x) { $("ley").appendChild(x); });
+    });
+
+    // Guía 50/30/20
+    var filas = [
+      ["Lo necesario y cuotas", (g.nec + g.deu) / ing, "Hasta 50 %", (g.nec + g.deu) / ing <= 0.5],
+      ["Gustos", g.gus / ing, "Hasta 30 %", g.gus / ing <= 0.3],
+      ["Ahorro", g.aho / ing, "20 % o más", g.aho / ing >= 0.2]
+    ];
+    $("guia").innerHTML = "";
+    filas.forEach(function (f) {
+      var tr = document.createElement("tr");
+      [f[0], pct(f[1]), f[2]].forEach(function (t, k) { var td = document.createElement("td"); td.textContent = t; if (k === 1) td.className = f[3] ? "ok" : "ojo"; tr.appendChild(td); });
+      $("guia").appendChild(tr);
+    });
+
+    // Hallazgos: se muestran los 3 primeros que apliquen, en este orden de importancia
+    var gustoDia = valor($("dom")) + valor($("sus"));
+    var viv = valor($("viv"));
+    var h = [];
+    if (libre < 0) h.push(["Gastas más de lo que te entra.", "Son " + pesos(-libre) + " de más en " + nombreP + ". Esa diferencia casi siempre sale de la tarjeta o de un préstamo, y por eso la deuda crece aunque pagues cumplido."]);
+    if (g.deu / ing >= 0.3) h.push(["Las deudas se llevan el " + pct(g.deu / ing) + " de lo que te entra.", "Cuando las cuotas pasan del 30 %, la plata ya no alcanza para lo demás. Pagarlas en el orden correcto puede hacer que salgas antes y pagues menos intereses."]);
+    if (!g.aho) h.push(["No estás separando nada para ahorrar.", "Si empiezas con el 5 % (" + pesos(ing * 0.05) + " en " + nombreP + "), en un año juntas cerca de " + pesos(ing * 0.05 * alAnio) + " para un imprevisto. Sepáralo el mismo día que te pagan, no al final."]);
+    if (viv / ing > 0.35) h.push(["La vivienda se lleva el " + pct(viv / ing) + ".", "Es lo más difícil de mover, así que el ajuste tiene que salir de otros grupos. Por eso conviene tener cada gasto bien medido."]);
+    if (gustoDia / ing >= 0.1) h.push(["Domicilios, salidas y suscripciones suman " + pesos(gustoDia * alAnio) + " al año.", "Es el " + pct(gustoDia / ing) + " de lo que te entra. No se trata de quitarlos, sino de ponerles un tope fijo cada quincena."]);
+    if (libre > 0 && libre / ing >= 0.05) h.push(["Te quedan " + pesos(libre) + " sin destino.", "Si no les das uno, lo más probable es que se vayan en gastos pequeños sin que lo notes. Decide desde hoy si van al ahorro o a adelantar una deuda."]);
+    if (g.aho && g.aho / ing >= 0.1) h.push(["Vas bien con el ahorro: separas el " + pct(g.aho / ing) + ".", "Pocas personas lo logran. El siguiente paso es saber para qué es cada ahorro y en cuánto tiempo lo quieres."]);
+    if (gustoDia > 0 && gustoDia / ing < 0.1) h.push(["Domicilios, salidas y suscripciones suman " + pesos(gustoDia * alAnio) + " al año.", "Está en un nivel razonable. Revisa cada tanto las suscripciones que ya no usas."]);
+    h.push(["Lo que escribes de memoria casi nunca cuadra con los extractos.", "La mayoría de personas se queda corta en los gastos pequeños. Comparar estas cifras con tus extractos de los últimos dos meses muestra la foto real."]);
+    $("hallazgos").innerHTML = "";
+    h.slice(0, 3).forEach(function (x) { var li = document.createElement("li"); var b = document.createElement("b"); b.textContent = x[0]; li.appendChild(b); li.appendChild(document.createTextNode(x[1])); $("hallazgos").appendChild(li); });
+
+    // Mensaje para WhatsApp
+    var t = "Hola Daniel, hice la calculadora de la quincena en tu página.\n" +
+      "Valores de " + nombreP + ":\n" +
+      "- Me entra: " + pesos(ing) + "\n" +
+      "- Lo necesario: " + pesos(g.nec) + " (" + pct(g.nec / ing) + ")\n" +
+      "- Deudas: " + pesos(g.deu) + " (" + pct(g.deu / ing) + ")\n" +
+      "- Gustos: " + pesos(g.gus) + " (" + pct(g.gus / ing) + ")\n" +
+      "- Ahorro: " + pesos(g.aho) + " (" + pct(g.aho / ing) + ")\n" +
+      "- " + (libre < 0 ? "Me faltan: " : "Me quedan: ") + pesos(Math.abs(libre)) + "\n" +
+      "¿Qué servicio me sirve?";
+    $("wa").href = wa(t);
+    $("plantilla").href = wa("PLANTILLA");
+    $("copiar").textContent = "Copiar mi resultado";
+    $("copiar").onclick = function () { navigator.clipboard.writeText(t).then(function () { $("copiar").textContent = "Resultado copiado"; }); };
+
+    $("f").hidden = true; $("res").hidden = false; window.scrollTo(0, 0);
+  });
+  $("editar").addEventListener("click", function () { $("res").hidden = true; $("f").hidden = false; window.scrollTo(0, 0); });
+</script>
+</body>
+</html>
