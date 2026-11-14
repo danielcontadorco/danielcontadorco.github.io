@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <title>Información legal | Daniel Contador</title>
 <meta name="description" content="Términos del servicio, política de datos personales, cookies, devoluciones, reclamos y derechos de autor de Daniel Contador.">
 <link rel="icon" type="image/png" href="logo.png">
@@ -222,9 +223,11 @@
 <script>
   var WHATSAPP = "573168146876", CORREO = "danielcontadorco@gmail.com";
   var temas = [].slice.call(document.querySelectorAll("details.tema"));
-  function abre() { var d = location.hash && document.querySelector("details" + location.hash); if (d) { d.open = true; d.scrollIntoView(); } }
+  // Un enlace con un #raro no debe dañar el resto de la página (formulario de reclamos incluido)
+  function tema(h) { try { return h && /^#[a-z][a-z0-9-]*$/i.test(h) ? document.querySelector("details" + h) : null; } catch (e) { return null; } }
+  function abre() { var d = tema(location.hash); if (d) { d.open = true; d.scrollIntoView(); } }
   window.addEventListener("hashchange", abre); abre();
-  document.querySelectorAll('a[href^="#"]').forEach(function (a) { a.addEventListener("click", function () { var d = document.querySelector("details" + a.getAttribute("href")); if (d) d.open = true; }); });
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) { a.addEventListener("click", function () { var d = tema(a.getAttribute("href")); if (d) d.open = true; }); });
   document.getElementById("todo").addEventListener("click", function () {
     var abrir = temas.some(function (d) { return !d.open; });
     temas.forEach(function (d) { d.open = abrir; }); this.textContent = abrir ? "Cerrar todos los temas" : "Abrir todos los temas";

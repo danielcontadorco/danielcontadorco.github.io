@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <title>Confirmar mi plan | Daniel Contador</title>
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/png" href="logo.png">
@@ -56,8 +57,8 @@
     <label class="campo" for="doc">Número de documento (cédula o NIT)</label>
     <input type="text" id="doc" inputmode="numeric" required>
     <h2>Tu aceptación</h2>
-    <label class="casilla"><input type="checkbox" id="c1"><span>He leído y acepto los <a href="legal.html#terminos" target="_blank">Términos del servicio</a> de Daniel Contador, vigentes desde el <span class="v"></span>.</span></label>
-    <label class="casilla"><input type="checkbox" id="c2"><span>Autorizo a Daniel Mauricio Delgado Burbano a tratar mis datos personales para prestarme el servicio, según su <a href="legal.html#datos" target="_blank">Política de tratamiento de datos</a>.</span></label>
+    <label class="casilla"><input type="checkbox" id="c1"><span>He leído y acepto los <a href="legal.html#terminos" target="_blank" rel="noopener">Términos del servicio</a> de Daniel Contador, vigentes desde el <span class="v"></span>.</span></label>
+    <label class="casilla"><input type="checkbox" id="c2"><span>Autorizo a Daniel Mauricio Delgado Burbano a tratar mis datos personales para prestarme el servicio, según su <a href="legal.html#datos" target="_blank" rel="noopener">Política de tratamiento de datos</a>.</span></label>
     <label class="casilla opc"><input type="checkbox" id="c3"><span><b>Opcional:</b> quiero recibir por WhatsApp consejos y novedades de Daniel Contador. Puedo cancelarlo cuando quiera.</span></label>
     <p class="aviso" id="aviso" role="alert"></p>
     <button class="btn" type="submit">Acepto y continúo</button>
@@ -74,7 +75,7 @@
     <button class="btn dos" id="editar" type="button">Corregir algo</button>
     <p class="nota">Se abre tu aplicación con el mensaje ya escrito; solo pulsa enviar. Te respondo con la confirmación de recibido a más tardar al día siguiente.</p>
   </div>
-  <p class="nota">Este mensaje, enviado por ti, tiene la misma validez que una firma en papel (Ley 527 de 1999). Si te arrepientes, tienes 5 días hábiles para decírmelo: mira <a href="legal.html#devoluciones" target="_blank">devoluciones y reembolsos</a>.</p>
+  <p class="nota">Este mensaje, enviado por ti, tiene la misma validez que una firma en papel (Ley 527 de 1999). Si te arrepientes, tienes 5 días hábiles para decírmelo: mira <a href="legal.html#devoluciones" target="_blank" rel="noopener">devoluciones y reembolsos</a>.</p>
 </main>
 <script>
   // Mismo número que en index.html (57 + número, sin espacios). Vacío = solo se ofrece correo.

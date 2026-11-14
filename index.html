@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
 <title>Daniel Contador | Presupuesto, deudas y declaración de renta</title>
 <meta name="description" content="Te ayudo a ordenar tu plata y a estar al día con la DIAN: presupuesto por quincena, plan para salir de deudas, declaración de renta y cuentas claras para negocios pequeños. Calculadora gratis de tu quincena.">
 <link rel="icon" type="image/png" href="logo.png">
@@ -172,8 +173,10 @@
   .bandeja .resumen:hover, .bandeja.abierta .resumen { background:rgba(255,255,255,.11); }
   .bandeja .resumen:focus-visible { outline:2px solid var(--acento); outline-offset:2px; }
   .bandeja .txt { flex:1; min-width:0; }
-  .bandeja small { display:block; opacity:.8; font-size:.8rem; line-height:1.3; }
-  .bandeja b { display:block; font-size:.97rem; line-height:1.35; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .bandeja small { display:block; opacity:.8; font-size:.8rem; line-height:1.3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .bandeja b { display:flex; align-items:center; gap:8px; font-size:.97rem; line-height:1.35; }
+  .bandeja b .nom { min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .bandeja b .mas { flex:none; background:var(--acento); color:var(--hondo); font-size:.75rem; font-weight:800; border-radius:99px; padding:2px 8px; }
   .bandeja .flecha { flex:none; width:30px; height:30px; border-radius:50%; background:rgba(255,255,255,.12); display:grid; place-items:center; }
   .bandeja .flecha::before { content:""; width:8px; height:8px; border-left:2px solid var(--acento); border-top:2px solid var(--acento); transform:translateY(2px) rotate(45deg); transition:transform .2s; }
   .bandeja.abierta .flecha::before { transform:translateY(-2px) rotate(225deg); }
@@ -455,6 +458,20 @@
 
   // Selección de varios servicios
   var bandeja = document.getElementById("bandeja");
+  // Presentación de la bandeja: una línea corta y, al tocarla, la lista completa (no cambia la selección)
+  var bVer = document.getElementById("bVer"), bPanel = document.getElementById("bPanel");
+  function abreBandeja(abrir) { bPanel.hidden = !abrir; bVer.setAttribute("aria-expanded", abrir ? "true" : "false"); bandeja.classList.toggle("abierta", abrir); }
+  function resumenBandeja(nombres) {
+    var bl = document.getElementById("bLista"); bl.textContent = "";
+    var nom = document.createElement("span"); nom.className = "nom"; nom.textContent = nombres[0] || ""; bl.appendChild(nom);
+    if (nombres.length > 1) { var mas = document.createElement("span"); mas.className = "mas"; mas.textContent = "+" + (nombres.length - 1); mas.title = "y " + (nombres.length - 1) + " más"; bl.appendChild(mas); }
+    var ul = document.getElementById("bChips"); ul.textContent = "";
+    nombres.forEach(function (n) { var li = document.createElement("li"); li.textContent = n; ul.appendChild(li); });
+    if (!nombres.length) abreBandeja(false);
+  }
+  bVer.addEventListener("click", function () { abreBandeja(bPanel.hidden); });
+  document.addEventListener("click", function (e) { if (!bPanel.hidden && !bandeja.contains(e.target)) abreBandeja(false); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !bPanel.hidden) { abreBandeja(false); bVer.focus(); } });
   var extras = [].slice.call(document.querySelectorAll(".extra"));
   function pinta() {
     // Tarjetas elegidas y, al final, un solo acompañamiento mensual (aunque tenga los dos planes)
