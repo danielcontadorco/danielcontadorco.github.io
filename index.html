@@ -122,6 +122,22 @@
   .card li::before { content:""; position:absolute; left:0; top:calc(4px + .8em); width:16px; height:9px; border-left:3px solid var(--claro); border-bottom:3px solid var(--claro); transform:rotate(-45deg) scale(.7); transform-origin:left top; }
   .elegir { width:100%; background:#fff; color:var(--verde); box-shadow:inset 0 0 0 2px var(--verde); padding:12px 18px; font-size:.97rem; }
   .card.sel .elegir { background:var(--verde); color:#fff; }
+  .extra { border:1.5px solid var(--linea); border-radius:14px; background:var(--fondo); margin:0 0 14px; overflow:hidden; transition:border-color .2s, background-color .2s; }
+  .extra.on { border-color:var(--claro); background:var(--suave); }
+  .extra-sel { display:flex; align-items:center; gap:12px; padding:12px 14px; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+  .extra-sel input { -webkit-appearance:none; appearance:none; flex:none; width:24px; height:24px; margin:0; border:2px solid var(--verde); border-radius:7px; background:#fff; display:grid; place-items:center; cursor:pointer; transition:background-color .15s; }
+  .extra-sel input::after { content:""; width:11px; height:6px; border-left:3px solid #fff; border-bottom:3px solid #fff; transform:translateY(-2px) rotate(-45deg); opacity:0; transition:opacity .15s; }
+  .extra-sel input:checked { background:var(--verde); } .extra-sel input:checked::after { opacity:1; }
+  .extra-sel input:focus-visible { outline:3px solid var(--acento); outline-offset:2px; }
+  .extra-sel b { display:block; font-size:.95rem; line-height:1.3; }
+  .extra-sel small { display:block; color:var(--gris); font-size:.84rem; font-weight:600; } .extra-sel em { font-style:normal; color:var(--verde); font-weight:800; }
+  .extra details { background:none; border:0; border-top:1px solid var(--linea); border-radius:0; padding:0; margin:0; }
+  .extra summary { list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px; padding:10px 14px; font-size:.88rem; font-weight:700; color:var(--verde); }
+  .extra summary::-webkit-details-marker { display:none; }
+  .extra summary::after { content:""; flex:none; width:8px; height:8px; margin:0 4px 4px 0; border-right:2.5px solid var(--verde); border-bottom:2.5px solid var(--verde); transform:rotate(45deg); transition:transform .2s; }
+  .extra details[open] summary::after { transform:translateY(4px) rotate(-135deg); }
+  .card .extra ul { flex:none; margin:0; padding:0 14px 10px; font-size:.9rem; }
+  .card .extra li { padding:3px 0 3px 26px; }
 
   /* Camino */
   .pasos { display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:16px; counter-reset:p; }
@@ -256,9 +272,13 @@
     <div class="grid" id="grid">
       <div class="card" data-publico="persona" data-id="q" data-nombre="Quincena en orden" data-sit="plata deudas"><span class="grupo oro">El más pedido</span><h3>Quincena en orden</h3><p class="para">Para quien gana, pero no sabe a dónde se le va.</p><p class="precio">$80.000 <small>pago único</small></p>
         <ul><li>Reviso tus extractos de los últimos dos meses, movimiento por movimiento</li><li>Encuentro lo que no ves de memoria: cuotas de manejo, seguros, suscripciones olvidadas y gastos pequeños que se suman</li><li>Lista de recortes: qué cobros puedes cancelar o bajar, cuánto te ahorras al año y cómo hacerlo, paso a paso</li><li>Presupuesto por quincena con tus números reales, ajustado a tus fechas de pago</li><li>Plan escrito para los próximos 30 días, con hasta 2 ajustes si algo no te cuadra</li><li>Videollamada de 30 minutos para explicártelo</li></ul>
+        <div class="extra" data-id="aq" data-nombre="Acompañamiento mensual de Quincena en orden"><label class="extra-sel"><input type="checkbox"><span><b>Sumar acompañamiento mensual</b><small>Opcional, después del plan · <em>$90.000 al mes</em></small></span></label>
+          <details><summary>Qué incluye el acompañamiento</summary><ul><li>Cada mes comparo lo que gastaste con tu presupuesto por quincena</li><li>Te digo qué cambiar el mes siguiente, en concreto</li><li>Llevo la cuenta de cuánto sube tu ahorro</li><li>Me escribes por WhatsApp cuando tengas dudas</li></ul></details></div>
         <button class="btn elegir" type="button">Agregar a mi plan</button></div>
       <div class="card" data-publico="persona" data-id="d" data-nombre="Plan Salir de deudas" data-sit="deudas"><span class="grupo">Para ti</span><h3>Plan Salir de deudas</h3><p class="para">Para quien tiene varias deudas y no ve el final.</p><p class="precio">$150.000 <small>pago único</small></p>
         <ul><li>Lista completa de lo que debes: saldo, cuota e interés de cada deuda</li><li>En qué orden pagarlas para que pagues menos intereses</li><li>Calendario mes a mes con la fecha estimada en que terminas</li><li>Guía para pedirle al banco mejores condiciones</li><li>Videollamada de 30 minutos para revisar todo el plan</li></ul>
+        <div class="extra" data-id="ad" data-nombre="Acompañamiento mensual de Salir de deudas"><label class="extra-sel"><input type="checkbox"><span><b>Sumar acompañamiento mensual</b><small>Opcional, después del plan · <em>$90.000 al mes</em></small></span></label>
+          <details><summary>Qué incluye el acompañamiento</summary><ul><li>Cada mes reviso contigo si vas al día con el calendario de pagos</li><li>Si algo se corrió, ajusto el orden y las fechas del plan</li><li>Llevo la cuenta de cuánto bajan tus deudas</li><li>Te recuerdo las fechas de pago de tus cuotas</li><li>Me escribes por WhatsApp cuando tengas dudas</li></ul></details></div>
         <button class="btn elegir" type="button">Agregar a mi plan</button></div>
       <div class="card" data-publico="persona" data-id="r" data-nombre="Declaración de renta" data-sit="renta"><span class="grupo">Para ti</span><h3>Declaración de renta</h3><p class="para">Para empleados, pensionados e independientes.</p><p class="precio"><small>Desde</small> $150.000</p>
         <ul><li>Primero reviso si de verdad te toca declarar</li><li>Preparo tu declaración con tus certificados y extractos</li><li>Te explico cada cifra antes de que la firmes</li><li>Te acompaño por videollamada mientras la presentas</li><li>También te ayudo si ya se te pasó la fecha</li></ul>
@@ -417,12 +437,15 @@
   // Selección de varios servicios
   var bandeja = document.getElementById("bandeja");
   function pinta() {
-    var sel = cartas.filter(function (c) { return c.classList.contains("sel"); });
-    var nombres = sel.map(function (c) { return c.dataset.nombre; });
+    // Cada tarjeta elegida y, si lo marcó, su acompañamiento mensual
+    var sel = [];
     cartas.forEach(function (c) {
-      var on = c.classList.contains("sel"), b = c.querySelector(".elegir");
+      var on = c.classList.contains("sel"), b = c.querySelector(".elegir"), x = c.querySelector(".extra");
       b.textContent = on ? "✓ En tu plan (tocar para quitar)" : "Agregar a mi plan"; b.setAttribute("aria-pressed", on ? "true" : "false");
+      if (on) sel.push(c);
+      if (x) { var marcado = x.querySelector("input").checked; x.classList.toggle("on", marcado); if (on && marcado) sel.push(x); }
     });
+    var nombres = sel.map(function (c) { return c.dataset.nombre; });
     bandeja.classList.toggle("ver", sel.length > 0);
     document.body.classList.toggle("con-bandeja", sel.length > 0);
     document.getElementById("bCuenta").textContent = sel.length === 1 ? "Tu plan: 1 servicio" : "Tu plan: " + sel.length + " servicios";
@@ -430,7 +453,15 @@
     document.getElementById("bSeguir").href = "aceptar.html?s=" + sel.map(function (c) { return c.dataset.id; }).join(",");
     var d = document.getElementById("bDuda"); d.href = wa("Hola Daniel, me interesa: " + nombres.join(", ") + ". Tengo una duda antes de empezar."); d.target = "_blank"; d.rel = "noopener";
   }
-  cartas.forEach(function (c) { c.querySelector(".elegir").addEventListener("click", function () { c.classList.toggle("sel"); pinta(); }); });
+  cartas.forEach(function (c) {
+    var x = c.querySelector(".extra input");
+    c.querySelector(".elegir").addEventListener("click", function () {
+      c.classList.toggle("sel");
+      if (x && !c.classList.contains("sel")) x.checked = false; // sin el plan no hay acompañamiento
+      pinta();
+    });
+    if (x) x.addEventListener("change", function () { if (x.checked) c.classList.add("sel"); pinta(); }); // marcarlo agrega también el plan
+  });
   document.querySelectorAll("[data-elige]").forEach(function (a) {
     a.addEventListener("click", function () { var c = document.querySelector('.card[data-id="' + a.dataset.elige + '"]'); if (c) { publicoActual = "persona"; situacionActual = "todo"; aplicaFiltros(); c.classList.add("sel"); pinta(); } });
   });
