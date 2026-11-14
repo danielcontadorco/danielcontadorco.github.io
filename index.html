@@ -285,8 +285,9 @@
   var pesos = function (n) { return "$" + Math.round(n).toLocaleString("es-CO"); };
   var diario = document.getElementById("diario"), diasSel = 5;
   function calcula() {
-    var anio = Number(diario.value) * diasSel * 52;
-    var mes = anio / 12; // un mes promedio: así mes × 12 da exactamente el año
+    // Mes promedio (52 semanas ÷ 12) redondeado a miles; el año es mes × 12 para que siempre cuadren.
+    var mes = Math.round(Number(diario.value) * diasSel * 52 / 12 / 1000) * 1000;
+    var anio = mes * 12;
     document.getElementById("vDiario").textContent = pesos(diario.value);
     document.getElementById("rMes").textContent = pesos(mes);
     document.getElementById("rAnio").textContent = pesos(anio);
