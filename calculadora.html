@@ -141,7 +141,6 @@
       <h2>¿Quieres saber qué hacer con esto?</h2>
       <p>Envíame tu resultado y te digo cuál de mis servicios te sirve. Si quieres que lo revisemos a fondo, hacemos un <b>diagnóstico de 30 minutos por videollamada por $50.000</b>, que se te descuentan si después contratas cualquier servicio.</p>
       <a class="btn" id="wa" target="_blank" rel="noopener">Enviarle mi resultado a Daniel</a>
-      <a class="btn dos" id="plantilla" target="_blank" rel="noopener">Quiero la plantilla gratis</a>
       <button class="btn dos" id="copiar" type="button">Copiar mi resultado</button>
       <a class="btn dos" href="index.html#servicios">Ver los servicios y precios</a>
     </div>
@@ -258,7 +257,6 @@
       "- " + (libre < 0 ? "Me faltan: " : "Me quedan: ") + pesos(Math.abs(libre)) + "\n" +
       "¿Qué servicio me sirve?";
     $("wa").href = wa(t);
-    $("plantilla").href = wa("PLANTILLA");
     $("copiar").textContent = "Copiar mi resultado";
     $("copiar").onclick = function () { navigator.clipboard.writeText(t).then(function () { $("copiar").textContent = "Resultado copiado"; }); };
 
